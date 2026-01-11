@@ -13,6 +13,7 @@ import {
   CheckCircle,
   CreditCard,
   Info,
+  ExternalLink,
 } from "lucide-react";
 import { rooms, pensionInfo, priceInfo } from "@/data/pension";
 import Link from "next/link";
@@ -66,22 +67,18 @@ export default function Guide() {
             </div>
           </div>
 
-          {/* Price Table */}
+          {/* Room List & Price Guide */}
           <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] overflow-hidden">
             <div className="p-3 sm:p-4 border-b border-[#2a3a4a]">
-              <h3 className="text-base sm:text-lg font-bold text-white">전체 객실 요금표</h3>
+              <h3 className="text-base sm:text-lg font-bold text-white">객실 안내</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-xs sm:text-sm">
                 <thead>
                   <tr className="bg-[#0d1520] text-gray-400">
                     <th className="py-2 sm:py-3 px-2 sm:px-4 text-left border-r border-[#2a3a4a] whitespace-nowrap">객실명</th>
-                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center border-r border-[#2a3a4a] hidden sm:table-cell">평수</th>
-                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center border-r border-[#2a3a4a] hidden md:table-cell">기준/최대</th>
-                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center border-r border-[#2a3a4a] whitespace-nowrap">주중</th>
-                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center border-r border-[#2a3a4a] whitespace-nowrap">금요일</th>
-                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center border-r border-[#2a3a4a] whitespace-nowrap">주말</th>
-                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center whitespace-nowrap">일요일</th>
+                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center border-r border-[#2a3a4a]">평수</th>
+                    <th className="py-2 sm:py-3 px-2 sm:px-4 text-center whitespace-nowrap">기준/최대</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -92,16 +89,26 @@ export default function Guide() {
                           {room.name}
                         </Link>
                       </td>
-                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-gray-300 border-r border-[#2a3a4a] hidden sm:table-cell">{room.size}</td>
-                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-gray-300 border-r border-[#2a3a4a] hidden md:table-cell">{room.capacity.standard}명/{room.capacity.max}명</td>
-                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-white font-medium border-r border-[#2a3a4a] whitespace-nowrap">{room.price?.weekday.toLocaleString()}원</td>
-                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-[#4A90A4] font-medium border-r border-[#2a3a4a] whitespace-nowrap">{room.price?.friday.toLocaleString()}원</td>
-                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-[#F5B041] font-medium border-r border-[#2a3a4a] whitespace-nowrap">{room.price?.weekend.toLocaleString()}원</td>
-                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-[#4A9F6D] font-medium whitespace-nowrap">{room.price?.sunday.toLocaleString()}원</td>
+                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-gray-300 border-r border-[#2a3a4a]">{room.size}</td>
+                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-center text-gray-300">{room.capacity.standard}명/{room.capacity.max}명</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+            {/* Price Guide */}
+            <div className="p-4 bg-[#03C75A]/10 border-t border-[#2a3a4a] flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span className="text-sm text-gray-300">실시간 요금 및 예약 가능 여부 확인</span>
+              <a
+                href={pensionInfo.naverBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-[#03C75A] text-white rounded-full font-bold text-sm hover:bg-[#02b351] transition-all"
+              >
+                <Calendar className="w-4 h-4" />
+                네이버 예약에서 확인
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
         </motion.div>
