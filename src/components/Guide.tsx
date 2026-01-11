@@ -51,7 +51,7 @@ export default function Guide() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-8 sm:mb-12"
         >
-          <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6 mb-6 sm:mb-8">
+          <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6 mb-8 sm:mb-10">
             <div className="flex items-start gap-3 sm:gap-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[#4A9F6D]/20 flex items-center justify-center flex-shrink-0">
                 <Info className="w-5 h-5 sm:w-6 sm:h-6 text-[#4A9F6D]" />
@@ -60,7 +60,7 @@ export default function Guide() {
                 <h3 className="text-base sm:text-lg font-bold text-white mb-1 sm:mb-2">요금 안내</h3>
                 <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
                   <li>- 주중 : 일요일~목요일 / 금요일 : 금요일요금 / 주말 : 토요일, 법정공휴일 전날</li>
-                  <li>- 성수기, 준성수기 기간 : 실시간예약 달력을 참고하세요.</li>
+                  <li>- 성수기, 준성수기 기간에는 요금이 상이할 수 있습니다.</li>
                 </ul>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Guide() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mb-10 sm:mb-14"
         >
           {/* Extra Person */}
           <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
@@ -157,24 +157,23 @@ export default function Guide() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-14"
         >
           {/* Left Column */}
-          <div className="space-y-3 sm:space-y-4">
+          <div className="space-y-4 sm:space-y-5">
             {/* 입금 및 예약 확인 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">01</span>
                 입금 및 예약 확인
               </h3>
               <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
                 <li>- 입금 시 예약자와 입금자명이 다를 경우 필히 확인 전화 주십시오.</li>
-                <li>- 실시간 예약 달력으로 예약시 발송되는 문자를 확인 하세요.</li>
               </ul>
             </div>
 
             {/* 최대인원 초과 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">02</span>
                 최대인원 초과
@@ -185,7 +184,7 @@ export default function Guide() {
             </div>
 
             {/* 입실 시간 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">03</span>
                 입실 시간
@@ -196,7 +195,7 @@ export default function Guide() {
             </div>
 
             {/* 퇴실 시간 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">04</span>
                 퇴실 시간
@@ -207,7 +206,7 @@ export default function Guide() {
             </div>
 
             {/* 객실 정리 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">05</span>
                 객실 정리
@@ -219,7 +218,7 @@ export default function Guide() {
             </div>
 
             {/* 유의사항 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#F5B041]/30 p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#F5B041]/30 p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-[#F5B041] mb-2 sm:mb-3 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                 유의사항
@@ -242,9 +241,9 @@ export default function Guide() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-3 sm:space-y-4">
+          <div className="space-y-4 sm:space-y-5">
             {/* 취사 및 바베큐 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#F5B041] flex items-center justify-center text-white text-xs font-bold">06</span>
                 취사 및 바베큐
@@ -256,7 +255,7 @@ export default function Guide() {
             </div>
 
             {/* 수영장 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A90A4] flex items-center justify-center text-white text-xs font-bold">07</span>
                 수영장
@@ -268,12 +267,12 @@ export default function Guide() {
             </div>
 
             {/* 주변 시설 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-5">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
               <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A9F6D]" />
                 주변 시설안내
               </h3>
-              <ul className="space-y-1.5 sm:space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
                 <li className="flex justify-between"><span>꾸지나무골 해수욕장</span><span className="text-[#4A90A4]">차량 6분</span></li>
                 <li className="flex justify-between"><span>만대항 당봉 전망대</span><span className="text-[#4A90A4]">차량 10분</span></li>
                 <li className="flex justify-between"><span>용난굴</span><span className="text-[#4A90A4]">차량 11분</span></li>
