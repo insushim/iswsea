@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Phone, Car, Bus, Navigation, ExternalLink, Clock } from "lucide-react";
 import { pensionInfo } from "@/data/pension";
@@ -12,9 +12,77 @@ const busInfo = [
   { route: "동서울 → 태안", frequency: "4회 운행", duration: "2시간 50분", time: "07:20 ~ 18:10" },
 ];
 
+// 숲속의바다 펜션 좌표 (카카오맵 기준)
+const PENSION_LAT = 36.8089;
+const PENSION_LNG = 126.3177;
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 export default function Location() {
   const ref = useRef(null);
+  const mapRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  useEffect(() => {
+    // 카카오맵 스크립트 로드
+    const script = document.createElement("script");
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=c80b770d9c2b93ea23464f15ac98ba2c&autoload=false`;
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        setMapLoaded(true);
+      });
+    };
+
+    return () => {
+      // 클린업 시 스크립트 제거하지 않음 (재로드 방지)
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mapLoaded || !mapRef.current) return;
+
+    const { kakao } = window;
+
+    // 지도 생성
+    const mapOption = {
+      center: new kakao.maps.LatLng(PENSION_LAT, PENSION_LNG),
+      level: 5, // 줌 레벨
+    };
+
+    const map = new kakao.maps.Map(mapRef.current, mapOption);
+
+    // 마커 생성
+    const markerPosition = new kakao.maps.LatLng(PENSION_LAT, PENSION_LNG);
+    const marker = new kakao.maps.Marker({
+      position: markerPosition,
+    });
+    marker.setMap(map);
+
+    // 인포윈도우 (펜션 이름 표시)
+    const iwContent = `
+      <div style="padding:8px 12px;font-size:13px;font-weight:600;white-space:nowrap;background:#fff;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+        숲속의바다펜션
+      </div>
+    `;
+    const infowindow = new kakao.maps.InfoWindow({
+      content: iwContent,
+      removable: false,
+    });
+    infowindow.open(map, marker);
+
+    // 지도 컨트롤 추가
+    const zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+  }, [mapLoaded]);
 
   return (
     <section id="location" className="bg-[var(--background)]" ref={ref} style={{ paddingTop: '30px', paddingBottom: '60px' }}>
@@ -46,28 +114,18 @@ export default function Location() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl h-[300px] sm:h-[400px] lg:h-[700px] relative">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.5!2d126.32!3d36.84!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b1e9f8c8c8c8d%3A0x0!2z7Lap64Ko7YOc7JW_6rWwIOydtOybkOuptCDsm5DsnbzroZwgMjE3MC01!5e0!3m2!1sko!2skr!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="숲속의바다 펜션 위치"
-              />
-              {/* Map Overlay Badge */}
-              <div className="absolute top-4 left-4 bg-[#1a2332] px-3 py-2 rounded-xl shadow-lg border border-[#2a3a4a]">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#4A9F6D] flex items-center justify-center">
-                    <MapPin className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-400">숲속의바다 펜션</p>
-                    <p className="font-semibold text-white text-sm">태안 안면도</p>
+              {/* 카카오맵 */}
+              <div ref={mapRef} className="w-full h-full" />
+
+              {/* 로딩 상태 */}
+              {!mapLoaded && (
+                <div className="absolute inset-0 bg-[#1a2332] flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-12 h-12 border-4 border-[#4A9F6D] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                    <p className="text-gray-400">지도를 불러오는 중...</p>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </motion.div>
 
@@ -124,7 +182,7 @@ export default function Location() {
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                 style={{
-                  backgroundImage: `url(http://www.woodinsea.com/html/img/gallery/main/1.jpg)`,
+                  backgroundImage: `url(/images/gallery/main/1.jpg)`,
                 }}
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
