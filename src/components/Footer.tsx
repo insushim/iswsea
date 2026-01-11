@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="lg:col-span-2 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-4 mb-6 sm:mb-8">
               <img
-                src="http://www.woodinsea.com/html/img/common/logo.png"
+                src="/images/common/logo.png"
                 alt="숲속의바다 펜션"
                 className="h-10 sm:h-12 lg:h-14 w-auto object-contain brightness-0 invert"
               />

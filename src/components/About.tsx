@@ -175,7 +175,7 @@ export default function About() {
           <div
             className="aspect-[4/3] lg:aspect-auto lg:h-full rounded-3xl overflow-hidden shadow-2xl"
             style={{
-              backgroundImage: `url(http://www.woodinsea.com/html/img/gallery/main/1.jpg)`,
+              backgroundImage: `url(/images/gallery/main/1.jpg)`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -186,7 +186,7 @@ export default function About() {
             <div
               className="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               style={{
-                backgroundImage: `url(http://www.woodinsea.com/html/img/gallery/special2/3.jpg)`,
+                backgroundImage: `url(/images/gallery/special2/3.jpg)`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -194,7 +194,7 @@ export default function About() {
             <div
               className="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               style={{
-                backgroundImage: `url(http://www.woodinsea.com/html/img/gallery/room1/4.jpg)`,
+                backgroundImage: `url(/images/gallery/room1/4.jpg)`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -202,7 +202,7 @@ export default function About() {
             <div
               className="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               style={{
-                backgroundImage: `url(http://www.woodinsea.com/html/img/main_con4.jpg)`,
+                backgroundImage: `url(/images/gallery/main/4.jpg)`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -210,7 +210,7 @@ export default function About() {
             <div
               className="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               style={{
-                backgroundImage: `url(http://www.woodinsea.com/html/img/gallery/main/5.jpg)`,
+                backgroundImage: `url(/images/gallery/main/5.jpg)`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}

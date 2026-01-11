@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "숲속의바다 펜션",
     images: [
       {
-        url: "http://www.woodinsea.com/html/img/gallery/main/1.jpg",
+        url: "/images/gallery/main/1.jpg",
         width: 1200,
         height: 630,
         alt: "숲속의바다 펜션 전경",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "숲속의바다 펜션 | 태안 안면도 프리미엄 오션뷰",
     description: "전 객실 오션뷰, 개별 바베큐 테라스, 프라이빗 스파",
-    images: ["http://www.woodinsea.com/html/img/gallery/main/1.jpg"],
+    images: ["/images/gallery/main/1.jpg"],
   },
   robots: {
     index: true,

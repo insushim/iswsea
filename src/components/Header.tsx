@@ -31,7 +31,7 @@ export default function Header() {
             <a href="#" className="flex items-center flex-shrink-0">
               <div className="relative">
                 <img
-                  src="http://www.woodinsea.com/html/img/common/logo.png"
+                  src="/images/common/logo.png"
                   alt="숲속의바다 펜션"
                   className="h-12 sm:h-16 lg:h-20 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                   style={{ filter: 'brightness(0) invert(1)' }}
@@ -121,7 +121,7 @@ export default function Header() {
               <div className="flex items-center justify-between p-6 border-b border-white/10">
                 <div className="flex items-center gap-3">
                   <img
-                    src="http://www.woodinsea.com/html/img/common/logo.png"
+                    src="/images/common/logo.png"
                     alt="숲속의바다 펜션"
                     className="h-10 w-auto object-contain"
                     style={{ filter: 'brightness(0) invert(1)' }}
