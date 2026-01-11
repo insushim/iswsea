@@ -15,15 +15,6 @@ import {
 import { rooms, pensionInfo } from "@/data/pension";
 import Link from "next/link";
 
-// 오늘 요일에 따른 가격 가져오기
-function getTodayPrice(price: { weekday: number; friday: number; weekend: number; sunday: number }) {
-  const today = new Date().getDay(); // 0=일, 1=월, ..., 6=토
-  if (today === 0) return { label: "일요일", price: price.sunday };
-  if (today === 5) return { label: "금요일", price: price.friday };
-  if (today === 6) return { label: "주말", price: price.weekend };
-  return { label: "주중", price: price.weekday };
-}
-
 const featureIcons: Record<string, React.ElementType> = {
   "오션뷰": Waves,
   "개별 테라스": ExternalLink,
@@ -119,19 +110,23 @@ export default function Rooms() {
                     </div>
                   </div>
 
-                  {/* Today's Price */}
-                  {room.price && (
-                    <div className="mb-3 p-3 bg-[var(--primary)]/5 rounded-lg border border-[var(--primary)]/20">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-[var(--foreground-muted)]">
-                          오늘({getTodayPrice(room.price).label}) 기준
-                        </span>
-                        <span className="text-lg font-bold text-[var(--primary)]">
-                          {getTodayPrice(room.price).price.toLocaleString()}원
-                        </span>
-                      </div>
+                  {/* 네이버 예약 유도 */}
+                  <div className="mb-3 p-3 bg-[#03C75A]/10 rounded-lg border border-[#03C75A]/30">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-[var(--foreground-muted)]">
+                        실시간 요금 확인
+                      </span>
+                      <a
+                        href={pensionInfo.naverBookingUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-bold text-[#03C75A] hover:underline flex items-center gap-1"
+                      >
+                        네이버 예약에서 확인
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
                     </div>
-                  )}
+                  </div>
 
                   {/* Features */}
                   <div className="flex flex-wrap gap-2">
