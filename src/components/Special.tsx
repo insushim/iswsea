@@ -205,12 +205,56 @@ export default function Special() {
               </p>
             </div>
 
-            {/* Special List - Scrollable Cards */}
+            {/* Special List - Horizontal Scroll on Mobile, Vertical on Desktop */}
             <div className="flex-1">
-              <h4 className="text-base font-semibold text-[var(--foreground-muted)] uppercase tracking-wider mb-5">
+              <h4 className="text-base font-semibold text-[var(--foreground-muted)] uppercase tracking-wider mb-5 hidden lg:block">
                 모든 시설 보기
               </h4>
-              <div className="space-y-4 max-h-[420px] overflow-y-auto pr-2 scrollbar-thin">
+              {/* Mobile: Horizontal scroll */}
+              <div className="lg:hidden -mx-6 px-6 overflow-x-auto scrollbar-hide">
+                <div className="flex gap-3 pb-4" style={{ width: 'max-content' }}>
+                  {specials.map((special, index) => {
+                    const SpecialIcon = iconMap[special.icon];
+                    const isActive = index === activeIndex;
+
+                    return (
+                      <button
+                        key={special.id}
+                        onClick={() => handleSelectSpecial(index)}
+                        className={`flex flex-col items-center justify-center p-4 rounded-xl transition-all ${
+                          isActive
+                            ? "bg-[var(--primary)] text-white shadow-lg"
+                            : "bg-[#1a2332] border border-[#2a3a4a]"
+                        }`}
+                        style={{ width: '100px', minWidth: '100px' }}
+                      >
+                        <div
+                          className={`w-10 h-10 rounded-lg flex items-center justify-center mb-2 ${
+                            isActive ? "bg-white/20" : "bg-[#0d1520]"
+                          }`}
+                        >
+                          {SpecialIcon && (
+                            <SpecialIcon
+                              className={`w-5 h-5 ${
+                                isActive ? "text-white" : "text-[var(--primary)]"
+                              }`}
+                            />
+                          )}
+                        </div>
+                        <span
+                          className={`text-xs font-bold text-center leading-tight ${
+                            isActive ? "text-white" : "text-[var(--foreground)]"
+                          }`}
+                        >
+                          {special.name}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              {/* Desktop: Vertical list */}
+              <div className="hidden lg:block space-y-4 max-h-[420px] overflow-y-auto pr-2 scrollbar-thin">
                 {specials.map((special, index) => {
                   const SpecialIcon = iconMap[special.icon];
                   const isActive = index === activeIndex;
