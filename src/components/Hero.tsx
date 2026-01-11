@@ -94,9 +94,9 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1]" />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
-        <div className="w-full max-w-none px-4 md:px-8 lg:px-16">
+      {/* Content - 모바일에서 더 위로 */}
+      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 pb-24 sm:pb-16 lg:pb-0">
+        <div className="w-full max-w-none px-4 md:px-8 lg:px-16 -mt-16 sm:-mt-8 lg:mt-0">
           {/* Logo Mark */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -205,7 +205,7 @@ export default function Hero() {
       </motion.button>
 
       {/* Progress Bar - 하단 프로그레스 */}
-      <div className="absolute bottom-20 sm:bottom-24 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
+      <div className="absolute bottom-14 sm:bottom-20 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
         {heroImages.map((_, index) => (
           <button
             key={index}
@@ -253,16 +253,16 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-2 sm:bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.a
           href="#about"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-white/80 hover:text-white transition-colors"
+          className="flex flex-col items-center gap-1 sm:gap-2 text-white/80 hover:text-white transition-colors"
         >
-          <span className="text-xs tracking-[0.2em] uppercase font-light">Scroll Down</span>
-          <ChevronDown className="w-5 h-5" />
+          <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase font-light">Scroll</span>
+          <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
         </motion.a>
       </motion.div>
 
