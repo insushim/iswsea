@@ -68,8 +68,8 @@ export default function Special() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--foreground)] mb-6 font-display">
             특별한 시설
           </h2>
-          <p className="text-[var(--foreground-muted)] text-xl max-w-3xl mx-auto">
-            바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장,
+          <p className="text-[var(--foreground-muted)] text-base sm:text-lg lg:text-xl mx-auto px-4 text-center">
+            바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장,<br />
             갯벌체험, 4계절 모두 꽃이 피는 정원까지
           </p>
         </motion.div>

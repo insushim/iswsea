@@ -52,8 +52,8 @@ export default function Rooms() {
             객실 안내
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] mx-auto mb-4 sm:mb-8 rounded-full" />
-          <p className="text-[var(--foreground-muted)] text-base sm:text-lg lg:text-xl max-w-3xl mx-auto px-4" style={{ textAlign: 'center' }}>
-            숲속의바다 펜션의 모든 객실은 아름다운 오션뷰를 자랑합니다.<br className="hidden sm:block" />
+          <p className="text-[var(--foreground-muted)] text-base sm:text-lg lg:text-xl mx-auto px-4 text-center">
+            숲속의바다 펜션의 모든 객실은 아름다운 오션뷰를 자랑합니다.<br />
             객실마다 개별적인 바베큐 테라스를 가지고 있습니다.
           </p>
         </motion.div>

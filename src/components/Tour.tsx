@@ -43,7 +43,7 @@ export default function Tour() {
             주변 여행지
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] mx-auto mb-8 rounded-full" />
-          <p className="text-[var(--foreground-muted)] text-xl max-w-3xl mx-auto">
+          <p className="text-[var(--foreground-muted)] text-base sm:text-lg lg:text-xl mx-auto px-4 text-center">
             태안, 가로림만, 안면도의 아름다운 여행지를 소개합니다
           </p>
         </motion.div>
