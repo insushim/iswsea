@@ -156,37 +156,37 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 px-4"
           >
             <motion.a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 sm:gap-3 px-8 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all hover:bg-[#02b351] w-full sm:w-auto sm:min-w-[240px] lg:min-w-[260px] justify-center"
+              className="group flex items-center gap-2 px-6 sm:px-10 lg:px-14 py-3 sm:py-4 lg:py-5 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-bold text-sm sm:text-base lg:text-lg rounded-full transition-all hover:bg-[#02b351] w-full sm:w-auto max-w-[280px] justify-center"
               whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>네이버 예약</span>
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </motion.a>
             <motion.a
               href="#rooms"
-              className="group flex items-center gap-2 sm:gap-3 px-8 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 bg-white/10 backdrop-blur-md border-2 border-white/70 text-white font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all w-full sm:w-auto sm:min-w-[240px] lg:min-w-[260px] justify-center"
+              className="group flex items-center gap-2 px-6 sm:px-10 lg:px-14 py-3 sm:py-4 lg:py-5 bg-white/10 backdrop-blur-md border-2 border-white/70 text-white font-bold text-sm sm:text-base lg:text-lg rounded-full transition-all w-full sm:w-auto max-w-[280px] justify-center"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Eye className="w-5 h-5 sm:w-6 sm:h-6" />
+              <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>객실 보기</span>
             </motion.a>
           </motion.div>
         </div>
       </div>
 
-      {/* Slide Navigation - 좌우 화살표 */}
+      {/* Slide Navigation - 좌우 화살표 (모바일에서 숨김) */}
       <motion.button
         onClick={prevSlide}
-        className="absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 lg:p-4 rounded-full bg-white/10 hover:bg-white/30 text-white backdrop-blur-md transition-all border border-white/20"
+        className="hidden sm:flex absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 lg:p-4 rounded-full bg-white/10 hover:bg-white/30 text-white backdrop-blur-md transition-all border border-white/20 items-center justify-center"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="이전 슬라이드"
@@ -196,7 +196,7 @@ export default function Hero() {
 
       <motion.button
         onClick={nextSlide}
-        className="absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 lg:p-4 rounded-full bg-white/10 hover:bg-white/30 text-white backdrop-blur-md transition-all border border-white/20"
+        className="hidden sm:flex absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 lg:p-4 rounded-full bg-white/10 hover:bg-white/30 text-white backdrop-blur-md transition-all border border-white/20 items-center justify-center"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="다음 슬라이드"

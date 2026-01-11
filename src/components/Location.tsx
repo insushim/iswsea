@@ -49,10 +49,28 @@ export default function Location() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl h-[300px] sm:h-[400px] lg:h-[700px] relative">
-              {/* 네이버 지도 iframe */}
+              {/* 모바일에서는 지도 링크 버튼으로 대체, PC에서는 iframe */}
+              <div className="lg:hidden w-full h-full bg-[#1a2332] flex flex-col items-center justify-center p-6">
+                <div className="w-20 h-20 rounded-full bg-[#0d1520] flex items-center justify-center mb-4">
+                  <MapPin className="w-10 h-10 text-[#4A9F6D]" />
+                </div>
+                <p className="text-white text-lg font-bold mb-2 text-center">숲속의바다 펜션</p>
+                <p className="text-gray-400 text-sm mb-6 text-center">{pensionInfo.address}</p>
+                <a
+                  href={`https://map.naver.com/p/entry/place/${NAVER_PLACE_ID}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[#03C75A] text-white rounded-full font-bold hover:bg-[#02b351] transition-all"
+                >
+                  <MapPin className="w-5 h-5" />
+                  <span>네이버 지도에서 보기</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+              {/* PC에서는 iframe */}
               <iframe
                 src={`https://map.naver.com/p/entry/place/${NAVER_PLACE_ID}?c=15.00,0,0,0,dh`}
-                className="w-full h-full border-0"
+                className="hidden lg:block w-full h-full border-0"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
