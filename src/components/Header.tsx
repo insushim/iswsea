@@ -25,10 +25,10 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 py-3 sm:py-4 lg:py-6 bg-gradient-to-b from-black/60 to-transparent">
-        <div className="w-full px-4 sm:px-6 lg:px-16">
+        <div className="w-full px-6 sm:px-8 lg:px-16">
           <div className="flex items-center justify-start">
             {/* 왼쪽: 로고 */}
-            <a href="#" className="flex items-center flex-shrink-0">
+            <a href="#" className="flex items-center flex-shrink-0 ml-2 sm:ml-4 lg:ml-0">
               <div className="relative">
                 <img
                   src="/images/common/logo.png"
