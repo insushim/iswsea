@@ -2,8 +2,9 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Bell, ChevronDown, ChevronUp } from "lucide-react";
+import { Bell, ChevronDown, ChevronUp, Settings } from "lucide-react";
 import { useAdminStore } from "@/stores/adminStore";
+import Link from "next/link";
 
 export default function Notice() {
   const ref = useRef(null);
@@ -30,7 +31,7 @@ export default function Notice() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12"
+          className="text-center mb-8 sm:mb-12 relative w-full"
         >
           <p className="text-white/70 text-sm sm:text-base tracking-[0.3em] uppercase mb-3 sm:mb-4 font-medium">
             NOTICE
@@ -39,6 +40,15 @@ export default function Notice() {
             공지사항
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-[#F5B041] to-[#4A9F6D] mx-auto rounded-full" />
+
+          {/* 관리자 로그인 버튼 */}
+          <Link
+            href="/admin"
+            className="absolute right-0 top-0 flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white/50 hover:text-white/80 text-xs sm:text-sm transition-all"
+          >
+            <Settings className="w-4 h-4" />
+            <span className="hidden sm:inline">관리자</span>
+          </Link>
         </motion.div>
 
         {/* Notice Board */}

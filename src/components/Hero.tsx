@@ -54,7 +54,7 @@ export default function Hero() {
   const currentKenBurns = kenBurnsVariants[currentSlide % kenBurnsVariants.length];
 
   return (
-    <section className="relative h-[120vh] sm:h-screen w-full overflow-hidden">
+    <section className="relative h-[140vh] sm:h-screen w-full overflow-hidden">
       {/* Background Images with Ken Burns Effect */}
       <AnimatePresence initial={true} mode="wait">
         <motion.div
@@ -86,14 +86,14 @@ export default function Hero() {
               ease: "linear"
             }}
           />
-          {/* Dark Overlay for text readability */}
-          <div className="absolute inset-0 bg-black/35" />
+          {/* Dark Overlay for text readability - 모바일에서는 제거 */}
+          <div className="absolute inset-0 bg-black/35 hidden sm:block" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Overlay Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1]" />
+      {/* Overlay Gradients - 모바일에서는 숨김 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
       {/* Content - 모바일에서 검은 영역 중앙 정렬 */}
       <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
