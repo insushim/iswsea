@@ -181,13 +181,13 @@ export default function Rooms() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 w-full flex justify-center items-center px-6"
+          className="mt-20 mb-4 w-full flex justify-center items-center px-6"
         >
           <a
             href={pensionInfo.naverBookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-[#03C75A] hover:bg-[#02b351] text-white font-bold text-xl rounded-full transition-all hover:scale-105 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-3 px-12 py-6 bg-[#03C75A]/80 hover:bg-[#03C75A] backdrop-blur-md border border-[#03C75A]/50 text-white font-bold text-xl rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-2xl"
           >
             <span>네이버 예약하기</span>
             <ExternalLink className="w-6 h-6" />

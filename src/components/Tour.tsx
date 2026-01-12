@@ -132,13 +132,13 @@ export default function Tour() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-16"
+          className="text-center mt-20 mb-4"
         >
           <a
             href="http://www.always-design.com/tour/taean/taean_badatime.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-xl rounded-full transition-all hover:scale-105 hover:bg-white/20"
+            className="inline-flex items-center gap-3 px-12 py-6 bg-white/10 backdrop-blur-xl border border-white/30 text-white font-bold text-xl rounded-full transition-all hover:scale-105 hover:bg-white/20 shadow-xl hover:shadow-2xl"
           >
             <Clock className="w-6 h-6" />
             <span>갯벌체험 시간표 보기</span>
