@@ -142,7 +142,7 @@ export default function Hero() {
                 </span>
               </motion.h1>
               <motion.p
-                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] pb-10 sm:pb-12"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
@@ -153,7 +153,7 @@ export default function Hero() {
           </AnimatePresence>
 
           {/* CTA Buttons */}
-          <div className="mt-8 sm:mt-10">
+          <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
