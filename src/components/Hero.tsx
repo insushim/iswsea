@@ -153,12 +153,13 @@ export default function Hero() {
           </AnimatePresence>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4 pt-10 sm:pt-12"
-          >
+          <div className="mt-8 sm:mt-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4"
+            >
             <motion.a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
@@ -180,7 +181,8 @@ export default function Hero() {
               <Eye className="w-5 h-5" />
               <span>객실 보기</span>
             </motion.a>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
