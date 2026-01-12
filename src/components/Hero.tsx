@@ -54,8 +54,42 @@ export default function Hero() {
   const currentKenBurns = kenBurnsVariants[currentSlide % kenBurnsVariants.length];
 
   return (
-    <section className="relative h-[140vh] sm:h-screen w-full overflow-hidden">
-      {/* Background Images with Ken Burns Effect */}
+    <section className="relative min-h-screen sm:h-screen w-full overflow-hidden">
+      {/* 모바일: 이미지 영역 (상단 60%) */}
+      <div className="sm:hidden absolute top-0 left-0 right-0 h-[55vh] overflow-hidden">
+        <AnimatePresence initial={true} mode="wait">
+          <motion.div
+            key={`mobile-${currentSlide}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <motion.img
+              src={currentImage.src}
+              alt={currentImage.alt}
+              className="absolute inset-0 w-full h-full object-cover"
+              initial={{
+                scale: currentKenBurns.scale[0],
+                x: currentKenBurns.x[0],
+                y: currentKenBurns.y[0]
+              }}
+              animate={{
+                scale: currentKenBurns.scale[1],
+                x: currentKenBurns.x[1],
+                y: currentKenBurns.y[1]
+              }}
+              transition={{
+                duration: 7,
+                ease: "linear"
+              }}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* PC: 전체 배경 이미지 */}
       <AnimatePresence initial={true} mode="wait">
         <motion.div
           key={currentSlide}
@@ -63,7 +97,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 hidden sm:block"
         >
           {/* Ken Burns 이미지 - 줌/패닝 애니메이션 */}
           <motion.img
@@ -86,18 +120,21 @@ export default function Hero() {
               ease: "linear"
             }}
           />
-          {/* Dark Overlay for text readability - 모바일에서는 제거 */}
-          <div className="absolute inset-0 bg-black/35 hidden sm:block" />
+          {/* Dark Overlay for text readability */}
+          <div className="absolute inset-0 bg-black/35" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Overlay Gradients - 모바일에서는 숨김 */}
+      {/* Overlay Gradients - PC만 */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
-      {/* Content - 모바일에서 검은 영역 중앙 정렬 */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
-        <div className="w-full max-w-none px-4 md:px-8 lg:px-16 mt-[28vh] sm:mt-0">
+      {/* 모바일: 검은 배경 (하단) */}
+      <div className="sm:hidden absolute top-[55vh] left-0 right-0 bottom-0 bg-[#0a1628]" />
+
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col justify-end sm:justify-center items-center text-center px-6 pb-16 sm:pb-0">
+        <div className="w-full max-w-none px-4 md:px-8 lg:px-16">
           {/* Logo Mark */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -174,12 +211,12 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#rooms"
-              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[220px] h-[56px] sm:h-[60px] px-10 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg rounded-full transition-all"
+              className="group flex items-center justify-center gap-3 w-[240px] sm:min-w-[220px] h-[56px] sm:h-[60px] px-10 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg rounded-full transition-all text-center"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Eye className="w-5 h-5" />
-              <span>객실 보기</span>
+              <Eye className="w-5 h-5 flex-shrink-0" />
+              <span className="flex-1 text-center">객실 보기</span>
             </motion.a>
           </motion.div>
         </div>
@@ -207,7 +244,7 @@ export default function Hero() {
       </motion.button>
 
       {/* Progress Bar - 하단 프로그레스 */}
-      <div className="absolute bottom-16 sm:bottom-20 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
+      <div className="absolute bottom-24 sm:bottom-20 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
         {heroImages.map((_, index) => (
           <button
             key={index}
@@ -255,7 +292,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-4 sm:bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-6 sm:bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.a
           href="#about"
