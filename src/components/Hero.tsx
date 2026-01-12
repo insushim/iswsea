@@ -163,7 +163,7 @@ export default function Hero() {
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-4 w-[240px] sm:w-auto px-12 py-5 sm:px-16 sm:py-7 md:px-20 md:py-8 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-lg md:text-xl rounded-full transition-all hover:bg-[#02b351]"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:w-auto px-12 py-5 sm:px-20 sm:py-8 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-xl rounded-full transition-all hover:bg-[#02b351]"
               whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
               whileTap={{ scale: 0.98 }}
             >
@@ -173,7 +173,7 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#rooms"
-              className="group flex items-center justify-center gap-4 w-[240px] sm:w-auto px-12 py-5 sm:px-16 sm:py-7 md:px-20 md:py-8 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg md:text-xl rounded-full transition-all"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:w-auto px-12 py-5 sm:px-20 sm:py-8 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-xl rounded-full transition-all"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
             >
