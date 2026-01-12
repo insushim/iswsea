@@ -142,44 +142,46 @@ export default function Hero() {
                 </span>
               </motion.h1>
               <motion.p
-                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] mb-10 sm:mb-12"
+                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
               >
                 {currentImage.subtitle}
               </motion.p>
-              {/* CTA Buttons - AnimatePresence 안에 배치 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4"
-              >
-                <motion.a
-                  href={pensionInfo.naverBookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[260px] sm:h-[60px] px-10 py-4 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-lg rounded-full transition-all hover:bg-[#02b351]"
-                  whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Calendar className="w-5 h-5" />
-                  <span>네이버 예약</span>
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </motion.a>
-                <motion.a
-                  href="#rooms"
-                  className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[220px] sm:h-[60px] px-10 py-4 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg rounded-full transition-all"
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Eye className="w-5 h-5" />
-                  <span>객실 보기</span>
-                </motion.a>
-              </motion.div>
             </motion.div>
           </AnimatePresence>
+
+          {/* CTA Buttons - AnimatePresence 밖에 배치 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4"
+            style={{ marginTop: '40px' }}
+          >
+            <motion.a
+              href={pensionInfo.naverBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[260px] sm:h-[60px] px-10 py-4 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-lg rounded-full transition-all hover:bg-[#02b351]"
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Calendar className="w-5 h-5" />
+              <span>네이버 예약</span>
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+            <motion.a
+              href="#rooms"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[220px] sm:h-[60px] px-10 py-4 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg rounded-full transition-all"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Eye className="w-5 h-5" />
+              <span>객실 보기</span>
+            </motion.a>
+          </motion.div>
         </div>
       </div>
 
