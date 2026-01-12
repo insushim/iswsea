@@ -157,13 +157,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4 sm:mt-6"
           >
             <motion.a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[280px] sm:h-[72px] px-12 py-5 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-xl rounded-full transition-all hover:bg-[#02b351]"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[260px] sm:h-[60px] px-10 py-4 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-lg rounded-full transition-all hover:bg-[#02b351]"
               whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
               whileTap={{ scale: 0.98 }}
             >
@@ -173,7 +173,7 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#rooms"
-              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[240px] sm:h-[72px] px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-xl rounded-full transition-all"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[220px] sm:h-[60px] px-10 py-4 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg rounded-full transition-all"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
             >
