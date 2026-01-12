@@ -63,7 +63,7 @@ export default function Header() {
                 style={{ padding: '12px 28px' }}
               >
                 <Phone className="w-5 h-5 text-white" />
-                <span className="text-lg text-white">{pensionInfo.phone}</span>
+                <span className="text-lg text-white">전화상담</span>
               </a>
 
               {/* Quick Reservation - 네이버 예약 */}
