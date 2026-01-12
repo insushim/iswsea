@@ -91,7 +91,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu - 세련된 풀스크린 디자인 */}
+      {/* Mobile Menu - 프리미엄 풀스크린 디자인 */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -100,13 +100,19 @@ export default function Header() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] lg:hidden"
           >
-            {/* Full Screen Background */}
+            {/* Full Screen Background with subtle pattern */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-gradient-to-b from-[#0a1628] via-[#0F1419] to-[#0a1628]"
+              className="absolute inset-0 bg-gradient-to-b from-[#0a1628] via-[#0d1a2d] to-[#0a1628]"
             />
+
+            {/* Decorative elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute top-20 -left-20 w-60 h-60 bg-emerald-500/5 rounded-full blur-[100px]" />
+              <div className="absolute bottom-40 -right-20 w-80 h-80 bg-blue-500/5 rounded-full blur-[100px]" />
+            </div>
 
             {/* Close Button - 우상단 */}
             <motion.button
@@ -114,45 +120,54 @@ export default function Header() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
               onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              className="absolute top-6 right-6 z-10 p-3 rounded-full bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
               aria-label="메뉴 닫기"
             >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-6 h-6 text-white/80" />
             </motion.button>
 
             {/* Content */}
-            <div className="relative h-full flex flex-col justify-between px-8 py-16">
-              {/* Logo */}
+            <div className="relative h-full flex flex-col px-8 pt-8 pb-10">
+              {/* Logo & Brand */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="flex justify-center"
+                className="flex flex-col items-center pt-4"
               >
                 <img
                   src="/images/common/logo.png"
                   alt="숲속의바다 펜션"
-                  className="h-16 w-auto object-contain"
+                  className="h-20 w-auto object-contain mb-2"
                   style={{ filter: 'brightness(0) invert(1)' }}
                 />
+                <p className="text-white/30 text-xs tracking-[0.3em] uppercase">Premium Pension</p>
               </motion.div>
 
-              {/* Navigation - 중앙 배치 */}
-              <nav className="flex-1 flex items-center justify-center">
-                <ul className="space-y-1">
+              {/* Navigation - 좌측 정렬, 큰 타이포 */}
+              <nav className="flex-1 flex items-center mt-8">
+                <ul className="w-full space-y-1">
                   {navItems.map((item, index) => (
                     <motion.li
                       key={item.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.15 + index * 0.05 }}
                     >
                       <a
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="block py-3 text-center text-2xl font-bold text-white/80 hover:text-white transition-colors"
+                        className="group flex items-center py-4 border-b border-white/5"
                       >
-                        {item.name}
+                        <span className="text-white/20 text-sm font-medium w-8">0{index + 1}</span>
+                        <span className="text-2xl font-bold text-white/90 group-hover:text-white transition-colors group-hover:translate-x-2 duration-300">
+                          {item.name}
+                        </span>
+                        <motion.span
+                          className="ml-auto text-white/0 group-hover:text-white/50 transition-colors"
+                        >
+                          →
+                        </motion.span>
                       </a>
                     </motion.li>
                   ))}
@@ -164,38 +179,42 @@ export default function Header() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="space-y-3"
+                className="space-y-3 mt-auto"
               >
                 {/* 네이버 예약 버튼 */}
                 <a
                   href={pensionInfo.naverBookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 w-full py-4 bg-[#03C75A] text-white rounded-2xl font-bold text-lg hover:bg-[#02b351] transition-all shadow-lg"
+                  className="flex items-center justify-center gap-3 w-full py-5 bg-[#03C75A] text-white rounded-2xl font-bold text-lg hover:bg-[#02b351] transition-all shadow-[0_8px_30px_rgba(3,199,90,0.3)]"
                 >
                   <Calendar className="w-5 h-5" />
                   네이버 예약하기
                 </a>
 
-                {/* 전화 버튼 */}
-                <a
-                  href={`tel:${pensionInfo.phone}`}
-                  className="flex items-center justify-center gap-3 w-full py-4 bg-white/10 text-white rounded-2xl font-semibold text-lg hover:bg-white/20 transition-colors backdrop-blur-sm"
-                >
-                  <Phone className="w-5 h-5" />
-                  {pensionInfo.phone}
-                </a>
+                {/* 연락처 버튼들 */}
+                <div className="flex gap-3">
+                  <a
+                    href={`tel:${pensionInfo.phone}`}
+                    className="flex-1 flex items-center justify-center gap-2 py-4 bg-white/5 text-white rounded-xl font-medium hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <Phone className="w-5 h-5" />
+                    <span className="text-sm">{pensionInfo.phone}</span>
+                  </a>
+                  <a
+                    href={`https://instagram.com/${pensionInfo.instagram}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-5 py-4 bg-white/5 text-white rounded-xl font-medium hover:bg-white/10 transition-colors border border-white/10"
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                </div>
 
-                {/* 인스타그램 */}
-                <a
-                  href={`https://instagram.com/${pensionInfo.instagram}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 text-white/50 hover:text-white/80 transition-colors"
-                >
-                  <Instagram className="w-5 h-5" />
-                  <span className="text-sm">@{pensionInfo.instagram}</span>
-                </a>
+                {/* Copyright */}
+                <p className="text-center text-white/20 text-xs pt-2">
+                  © 2024 숲속의바다. All rights reserved.
+                </p>
               </motion.div>
             </div>
           </motion.div>

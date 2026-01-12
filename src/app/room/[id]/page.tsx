@@ -263,8 +263,8 @@ export default function RoomDetailPage() {
                     <p className="text-[#4A90A4] text-sm">기준{room.capacity.standard}명 / 최대{room.capacity.max}명 ({room.size})</p>
                   </div>
 
-                  {/* Room Info & Price Guide */}
-                  <div className="mb-6 rounded-xl overflow-hidden border border-[#2a3a4a]">
+                  {/* Room Info Table */}
+                  <div className="mb-4 rounded-xl overflow-hidden border border-[#2a3a4a]">
                     {/* Header */}
                     <div className="grid grid-cols-3 bg-[#0d1520] text-center text-xs">
                       <div className="py-2 px-1 border-r border-[#2a3a4a] text-gray-400">객실명</div>
@@ -272,25 +272,46 @@ export default function RoomDetailPage() {
                       <div className="py-2 px-1 text-gray-400">기준/최대</div>
                     </div>
                     {/* Data Row */}
-                    <div className="grid grid-cols-3 bg-[#1a2332] text-center text-xs border-b border-[#2a3a4a]">
+                    <div className="grid grid-cols-3 bg-[#1a2332] text-center text-xs">
                       <div className="py-3 px-1 border-r border-[#2a3a4a] text-white font-medium">{room.name}</div>
                       <div className="py-3 px-1 border-r border-[#2a3a4a] text-gray-300">{room.size}</div>
                       <div className="py-3 px-1 text-gray-300">{room.capacity.standard}명/{room.capacity.max}명</div>
                     </div>
-                    {/* Price Guide */}
-                    <div className="p-3 bg-[#03C75A]/10 flex items-center justify-between">
-                      <span className="text-sm text-gray-300">실시간 요금 확인</span>
-                      <a
-                        href={pensionInfo.naverBookingUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-bold text-[#03C75A] hover:underline flex items-center gap-1"
-                      >
-                        네이버 예약에서 확인
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
                   </div>
+
+                  {/* Price Table */}
+                  {room.prices && (
+                    <div className="mb-6 rounded-xl overflow-hidden border border-[#2a3a4a]">
+                      {/* Price Header */}
+                      <div className="grid grid-cols-4 bg-[#0d1520] text-center text-[10px] sm:text-xs">
+                        <div className="py-2 px-1 border-r border-[#2a3a4a] text-gray-400">
+                          <div>주중</div>
+                          <div className="text-[9px] text-gray-500">(월~목)</div>
+                        </div>
+                        <div className="py-2 px-1 border-r border-[#2a3a4a] text-gray-400">금요일</div>
+                        <div className="py-2 px-1 border-r border-[#2a3a4a] text-gray-400">
+                          <div>주말</div>
+                          <div className="text-[9px] text-gray-500">(토,공휴일전일)</div>
+                        </div>
+                        <div className="py-2 px-1 text-gray-400">일요일</div>
+                      </div>
+                      {/* Price Data Row */}
+                      <div className="grid grid-cols-4 bg-[#1a2332] text-center text-[11px] sm:text-sm">
+                        <div className="py-3 px-1 border-r border-[#2a3a4a] text-[#4A9F6D] font-bold">
+                          {room.prices.weekday.toLocaleString()}원
+                        </div>
+                        <div className="py-3 px-1 border-r border-[#2a3a4a] text-[#4A90A4] font-bold">
+                          {room.prices.friday.toLocaleString()}원
+                        </div>
+                        <div className="py-3 px-1 border-r border-[#2a3a4a] text-[#F5B041] font-bold">
+                          {room.prices.weekend.toLocaleString()}원
+                        </div>
+                        <div className="py-3 px-1 text-[#4A9F6D] font-bold">
+                          {room.prices.sunday.toLocaleString()}원
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Phone - Centered */}
                   <a

@@ -83,6 +83,12 @@ export const rooms = [
     mainImage: "/images/gallery/sub2_room1_img1.jpg",
     capacity: { standard: 2, max: 2 },
     size: "30㎡ / 9평",
+    prices: {
+      weekday: 90000,    // 주중 (월~목)
+      friday: 100000,    // 금요일
+      weekend: 130000,   // 주말 (토, 공휴일 전일)
+      sunday: 90000,     // 일요일
+    },
   },
   {
     id: "landora",
@@ -97,6 +103,12 @@ export const rooms = [
     mainImage: "/images/gallery/room3/1.jpg",
     capacity: { standard: 2, max: 2 },
     size: "30㎡ / 9평",
+    prices: {
+      weekday: 90000,
+      friday: 100000,
+      weekend: 130000,
+      sunday: 90000,
+    },
   },
   {
     id: "bluemoon",
@@ -111,6 +123,12 @@ export const rooms = [
     mainImage: "/images/gallery/room4/1.jpg",
     capacity: { standard: 2, max: 2 },
     size: "30㎡ / 9평",
+    prices: {
+      weekday: 90000,
+      friday: 100000,
+      weekend: 130000,
+      sunday: 90000,
+    },
   },
   {
     id: "lora",
@@ -125,6 +143,12 @@ export const rooms = [
     mainImage: "/images/gallery/room5/1.jpg",
     capacity: { standard: 2, max: 3 },
     size: "40㎡ / 12평",
+    prices: {
+      weekday: 110000,
+      friday: 120000,
+      weekend: 160000,
+      sunday: 110000,
+    },
   },
   {
     id: "elle",
@@ -139,6 +163,12 @@ export const rooms = [
     mainImage: "/images/gallery/room6/1.jpg",
     capacity: { standard: 2, max: 3 },
     size: "40㎡ / 12평",
+    prices: {
+      weekday: 110000,
+      friday: 120000,
+      weekend: 160000,
+      sunday: 110000,
+    },
   },
   {
     id: "angela",
@@ -153,6 +183,12 @@ export const rooms = [
     mainImage: "/images/gallery/room7/1.jpg",
     capacity: { standard: 2, max: 2 },
     size: "30㎡ / 9평",
+    prices: {
+      weekday: 90000,
+      friday: 100000,
+      weekend: 130000,
+      sunday: 90000,
+    },
   },
   {
     id: "sahara",
@@ -167,6 +203,12 @@ export const rooms = [
     mainImage: "/images/gallery/room8/1.jpg",
     capacity: { standard: 2, max: 2 },
     size: "30㎡ / 9평",
+    prices: {
+      weekday: 90000,
+      friday: 100000,
+      weekend: 130000,
+      sunday: 90000,
+    },
   },
   {
     id: "margaret",
@@ -181,6 +223,12 @@ export const rooms = [
     mainImage: "/images/gallery/room9/1.jpg",
     capacity: { standard: 2, max: 2 },
     size: "30㎡ / 9평",
+    prices: {
+      weekday: 90000,
+      friday: 100000,
+      weekend: 130000,
+      sunday: 90000,
+    },
   },
   {
     id: "rococo",
@@ -195,6 +243,12 @@ export const rooms = [
     mainImage: "/images/gallery/room10/1.jpg",
     capacity: { standard: 2, max: 2 },
     size: "30㎡ / 9평",
+    prices: {
+      weekday: 90000,
+      friday: 100000,
+      weekend: 130000,
+      sunday: 90000,
+    },
   },
   {
     id: "rosanna",
@@ -209,6 +263,12 @@ export const rooms = [
     mainImage: "/images/gallery/room11/1.jpg",
     capacity: { standard: 2, max: 4 },
     size: "66㎡ / 20평",
+    prices: {
+      weekday: 150000,
+      friday: 160000,
+      weekend: 190000,
+      sunday: 150000,
+    },
   },
   {
     id: "momoka",
@@ -223,6 +283,12 @@ export const rooms = [
     mainImage: "/images/gallery/room12/1.jpg",
     capacity: { standard: 2, max: 4 },
     size: "66㎡ / 20평",
+    prices: {
+      weekday: 150000,
+      friday: 160000,
+      weekend: 190000,
+      sunday: 150000,
+    },
   },
   {
     id: "charleston",
@@ -237,6 +303,12 @@ export const rooms = [
     mainImage: "/images/gallery/room13/1.jpg",
     capacity: { standard: 6, max: 8 },
     size: "129㎡ / 39평",
+    prices: {
+      weekday: 250000,
+      friday: 280000,
+      weekend: 330000,
+      sunday: 250000,
+    },
   },
 ];
 

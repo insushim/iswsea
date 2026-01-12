@@ -135,7 +135,7 @@ export default function Special() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.4 }}
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl"
+                className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-[16/9] shadow-2xl"
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"

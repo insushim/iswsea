@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Images with Ken Burns Effect */}
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={true} mode="wait">
         <motion.div
           key={currentSlide}
           initial={{ opacity: 0 }}
@@ -67,6 +67,7 @@ export default function Hero() {
         >
           {/* Ken Burns 이미지 - 줌/패닝 애니메이션 */}
           <motion.img
+            key={`img-${currentSlide}`}
             src={currentImage.src}
             alt={currentImage.alt}
             className="absolute inset-0 w-full h-full object-cover"
@@ -94,9 +95,9 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1]" />
 
-      {/* Content - 모바일에서 더 위로 */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 pb-24 sm:pb-16 lg:pb-0">
-        <div className="w-full max-w-none px-4 md:px-8 lg:px-16 -mt-16 sm:-mt-8 lg:mt-0">
+      {/* Content - 모바일에서 검은 영역 중앙 정렬 */}
+      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
+        <div className="w-full max-w-none px-4 md:px-8 lg:px-16 mt-[28vh] sm:mt-0">
           {/* Logo Mark */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -141,7 +142,7 @@ export default function Hero() {
                 </span>
               </motion.h1>
               <motion.p
-                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light mb-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light mb-8 sm:mb-14 md:mb-16 lg:mb-20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
@@ -156,27 +157,27 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4"
           >
             <motion.a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-6 sm:px-10 lg:px-14 py-3 sm:py-4 lg:py-5 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-bold text-sm sm:text-base lg:text-lg rounded-full transition-all hover:bg-[#02b351] w-full sm:w-auto max-w-[280px] justify-center"
+              className="group flex items-center justify-center gap-3 w-[240px] sm:w-auto px-12 py-5 sm:px-14 sm:py-6 lg:px-20 lg:py-8 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-lg lg:text-xl rounded-full transition-all hover:bg-[#02b351]"
               whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Calendar className="w-5 h-5" />
               <span>네이버 예약</span>
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.a>
             <motion.a
               href="#rooms"
-              className="group flex items-center gap-2 px-6 sm:px-10 lg:px-14 py-3 sm:py-4 lg:py-5 bg-white/10 backdrop-blur-md border-2 border-white/70 text-white font-bold text-sm sm:text-base lg:text-lg rounded-full transition-all w-full sm:w-auto max-w-[280px] justify-center"
+              className="group flex items-center justify-center gap-3 w-[240px] sm:w-auto px-12 py-5 sm:px-14 sm:py-6 lg:px-20 lg:py-8 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg lg:text-xl rounded-full transition-all"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Eye className="w-5 h-5" />
               <span>객실 보기</span>
             </motion.a>
           </motion.div>
@@ -205,7 +206,7 @@ export default function Hero() {
       </motion.button>
 
       {/* Progress Bar - 하단 프로그레스 */}
-      <div className="absolute bottom-14 sm:bottom-20 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
+      <div className="absolute bottom-16 sm:bottom-20 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
         {heroImages.map((_, index) => (
           <button
             key={index}
@@ -253,7 +254,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-2 sm:bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-4 sm:bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.a
           href="#about"

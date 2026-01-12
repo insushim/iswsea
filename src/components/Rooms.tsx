@@ -110,23 +110,39 @@ export default function Rooms() {
                     </div>
                   </div>
 
-                  {/* 네이버 예약 유도 */}
-                  <div className="mb-3 p-3 bg-[#03C75A]/10 rounded-lg border border-[#03C75A]/30">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-[var(--foreground-muted)]">
-                        실시간 요금 확인
-                      </span>
-                      <a
-                        href={pensionInfo.naverBookingUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-bold text-[#03C75A] hover:underline flex items-center gap-1"
-                      >
-                        네이버 예약에서 확인
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
+                  {/* 요금표 */}
+                  {room.prices && (
+                    <div className="mb-3 rounded-lg overflow-hidden border border-[var(--border)]">
+                      {/* 요금 헤더 */}
+                      <div className="grid grid-cols-4 bg-[var(--background)] text-center text-[9px]">
+                        <div className="py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">
+                          <div>주중</div>
+                          <div className="text-[8px] opacity-70">(월~목)</div>
+                        </div>
+                        <div className="py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">금요일</div>
+                        <div className="py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">
+                          <div>주말</div>
+                          <div className="text-[8px] opacity-70">(토,공휴일전)</div>
+                        </div>
+                        <div className="py-1.5 px-0.5 text-[var(--foreground-muted)]">일요일</div>
+                      </div>
+                      {/* 요금 데이터 */}
+                      <div className="grid grid-cols-4 bg-[var(--card)] text-center text-[10px]">
+                        <div className="py-2 px-0.5 border-r border-[var(--border)] text-[var(--primary)] font-bold">
+                          {(room.prices.weekday / 10000).toFixed(0)}만
+                        </div>
+                        <div className="py-2 px-0.5 border-r border-[var(--border)] text-[var(--secondary)] font-bold">
+                          {(room.prices.friday / 10000).toFixed(0)}만
+                        </div>
+                        <div className="py-2 px-0.5 border-r border-[var(--border)] text-[#F5B041] font-bold">
+                          {(room.prices.weekend / 10000).toFixed(0)}만
+                        </div>
+                        <div className="py-2 px-0.5 text-[var(--primary)] font-bold">
+                          {(room.prices.sunday / 10000).toFixed(0)}만
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Features */}
                   <div className="flex flex-wrap gap-2">
