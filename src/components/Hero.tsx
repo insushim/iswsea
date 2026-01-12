@@ -159,7 +159,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-7 md:gap-8 lg:gap-10 mt-6 sm:mt-10"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-7 md:gap-8 lg:gap-10 mt-8 sm:mt-12"
           >
             <motion.a
               href={pensionInfo.naverBookingUrl}
