@@ -248,7 +248,7 @@ export default function Guide() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-6 sm:space-y-7">
+          <div className="flex flex-col gap-6 sm:gap-7">
             {/* 취사 및 바베큐 */}
             <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
               <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
@@ -273,13 +273,13 @@ export default function Guide() {
               </ul>
             </div>
 
-            {/* 주변 시설 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+            {/* 주변 시설 - flex-1로 남은 공간 채움 */}
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7 lg:flex-1 flex flex-col">
               <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A9F6D]" />
                 주변 시설안내
               </h3>
-              <ul className="space-y-3 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-4 text-gray-300 text-xs sm:text-sm flex-1 flex flex-col justify-evenly">
                 <li className="flex justify-between"><span>꾸지나무골 해수욕장</span><span className="text-[#4A90A4]">차량 6분</span></li>
                 <li className="flex justify-between"><span>만대항 당봉 전망대</span><span className="text-[#4A90A4]">차량 10분</span></li>
                 <li className="flex justify-between"><span>용난굴</span><span className="text-[#4A90A4]">차량 11분</span></li>
