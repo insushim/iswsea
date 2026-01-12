@@ -94,11 +94,11 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
-      {/* 모바일: 하단 그라데이션 오버레이 (텍스트 가독성) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-[1] sm:hidden" />
+      {/* 모바일: 중앙 그라데이션 오버레이 (텍스트 가독성) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20 z-[1] sm:hidden" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-end sm:justify-center items-center text-center px-6 pb-32 sm:pb-0">
+      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
         <div className="w-full max-w-none px-4 md:px-8 lg:px-16">
           {/* Logo Mark - PC만 */}
           <motion.div
