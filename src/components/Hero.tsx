@@ -142,7 +142,7 @@ export default function Hero() {
                 </span>
               </motion.h1>
               <motion.p
-                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light mb-12 sm:mb-16 md:mb-20 lg:mb-24 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
@@ -157,7 +157,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4 mt-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-7 md:gap-8 lg:gap-10 px-4 pt-10 sm:pt-12"
           >
             <motion.a
               href={pensionInfo.naverBookingUrl}
