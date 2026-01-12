@@ -70,42 +70,82 @@ export default function FloatingCTA() {
           </AnimatePresence>
 
           {/* Main Toggle Button */}
-          <motion.button
-            onClick={() => setIsExpanded(!isExpanded)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className={`w-20 h-20 rounded-full shadow-2xl flex items-center justify-center transition-all ${
-              isExpanded
-                ? "bg-gray-800 text-white"
-                : "bg-black text-[#F5B041] hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] border-2 border-[#F5B041]"
-            }`}
-          >
-            <AnimatePresence mode="wait">
-              {isExpanded ? (
+          <div className="relative">
+            {/* Pulse ring animation - 더 눈에 띄게 */}
+            {!isExpanded && (
+              <>
                 <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="w-7 h-7" />
-                </motion.div>
-              ) : (
+                  className="absolute inset-0 rounded-full bg-[#03C75A]"
+                  animate={{
+                    scale: [1, 1.4, 1.4],
+                    opacity: [0.6, 0, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                  }}
+                />
                 <motion.div
-                  key="open"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <MessageCircle className="w-7 h-7" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
+                  className="absolute inset-0 rounded-full bg-[#03C75A]"
+                  animate={{
+                    scale: [1, 1.6, 1.6],
+                    opacity: [0.4, 0, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                    delay: 0.3,
+                  }}
+                />
+              </>
+            )}
+            <motion.button
+              onClick={() => setIsExpanded(!isExpanded)}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+              animate={!isExpanded ? {
+                y: [0, -8, 0],
+                rotate: [0, 5, -5, 0],
+              } : {}}
+              transition={{
+                repeat: Infinity,
+                duration: 2.5,
+                ease: "easeInOut"
+              }}
+              className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-2xl flex items-center justify-center transition-all ${
+                isExpanded
+                  ? "bg-gray-800 text-white"
+                  : "bg-[#03C75A] text-white hover:shadow-[0_10px_40px_rgba(3,199,90,0.6)] border-2 border-white/30"
+              }`}
+              style={!isExpanded ? { boxShadow: '0 8px 32px rgba(3, 199, 90, 0.5)' } : {}}
+            >
+              <AnimatePresence mode="wait">
+                {isExpanded ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6 sm:w-7 sm:h-7" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="open"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
