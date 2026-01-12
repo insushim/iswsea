@@ -81,7 +81,7 @@ export default function Header() {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setIsOpen(true)}
-                className="lg:hidden p-3 rounded-full transition-all border text-white border-white/30 bg-black/20 hover:bg-black/30"
+                className="lg:hidden p-3 rounded-full transition-all border text-white border-white/30 bg-black/20 hover:bg-black/30 mr-2 sm:mr-4"
                 aria-label="메뉴 열기"
               >
                 <Menu className="w-7 h-7" />
