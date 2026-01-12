@@ -142,7 +142,7 @@ export default function Hero() {
                 </span>
               </motion.h1>
               <motion.p
-                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light mb-8 sm:mb-14 md:mb-16 lg:mb-20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light mb-12 sm:mb-16 md:mb-20 lg:mb-24 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
