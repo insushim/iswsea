@@ -54,7 +54,7 @@ export default function Hero() {
   const currentKenBurns = kenBurnsVariants[currentSlide % kenBurnsVariants.length];
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-[120vh] sm:h-screen w-full overflow-hidden">
       {/* Background Images with Ken Burns Effect */}
       <AnimatePresence initial={true} mode="wait">
         <motion.div
@@ -164,7 +164,7 @@ export default function Hero() {
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[260px] sm:h-[60px] px-10 py-4 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-lg rounded-full transition-all hover:bg-[#02b351]"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[260px] h-[56px] sm:h-[60px] px-10 bg-[#03C75A] backdrop-blur-md border border-[#03C75A] text-white font-semibold text-base sm:text-lg rounded-full transition-all hover:bg-[#02b351]"
               whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
               whileTap={{ scale: 0.98 }}
             >
@@ -174,7 +174,7 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#rooms"
-              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[220px] sm:h-[60px] px-10 py-4 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg rounded-full transition-all"
+              className="group flex items-center justify-center gap-4 w-[240px] sm:min-w-[220px] h-[56px] sm:h-[60px] px-10 bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base sm:text-lg rounded-full transition-all"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
             >

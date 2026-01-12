@@ -167,70 +167,70 @@ export default function Guide() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-14"
         >
           {/* Left Column */}
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-6 sm:space-y-7">
             {/* 입금 및 예약 확인 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">01</span>
                 입금 및 예약 확인
               </h3>
-              <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
                 <li>- 입금 시 예약자와 입금자명이 다를 경우 필히 확인 전화 주십시오.</li>
               </ul>
             </div>
 
             {/* 최대인원 초과 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">02</span>
                 최대인원 초과
               </h3>
-              <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
                 <li>- 최대인원 초과시 입실 및 환불이 불가합니다.</li>
               </ul>
             </div>
 
             {/* 입실 시간 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">03</span>
                 입실 시간
               </h3>
-              <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
                 <li>- 이용 당일 <span className="text-[#4A9F6D] font-medium">15:00 ~ 22:00</span></li>
               </ul>
             </div>
 
             {/* 퇴실 시간 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">04</span>
                 퇴실 시간
               </h3>
-              <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
                 <li>- 마지막 이용일 <span className="text-[#4A90A4] font-medium">오전 11시</span></li>
               </ul>
             </div>
 
             {/* 객실 정리 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A9F6D] flex items-center justify-center text-white text-xs font-bold">05</span>
                 객실 정리
               </h3>
-              <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
                 <li>- 퇴실 점검 후 객실 키를 반납해 주세요.</li>
                 <li>- 쓰레기는 분리하여 지정 장소에 버려주세요.</li>
               </ul>
             </div>
 
             {/* 유의사항 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#F5B041]/30 p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-[#F5B041] mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#F5B041]/30 p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-[#F5B041] mb-3 sm:mb-4 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                 유의사항
               </h3>
-              <ul className="space-y-1.5 sm:space-y-2 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2.5 text-gray-300 text-xs sm:text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-[#F5B041]">•</span>
                   <span><span className="text-[#F5B041] font-medium">미성년자</span> 보호자 동반 필수</span>
@@ -248,38 +248,38 @@ export default function Guide() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-6 sm:space-y-7">
             {/* 취사 및 바베큐 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#F5B041] flex items-center justify-center text-white text-xs font-bold">06</span>
                 취사 및 바베큐
               </h3>
-              <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2.5 text-gray-300 text-xs sm:text-sm">
                 <li>- 오후 9시 이후 바베큐장 이용 금지</li>
                 <li>- 객실 내 육류 구이 금지</li>
               </ul>
             </div>
 
             {/* 수영장 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#4A90A4] flex items-center justify-center text-white text-xs font-bold">07</span>
                 수영장
               </h3>
-              <ul className="space-y-1 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-2.5 text-gray-300 text-xs sm:text-sm">
                 <li>- <span className="text-[#4A90A4] font-medium">여름 성수기 기간</span>에만 운영</li>
                 <li>- 수영장 내 음식물 반입 금지</li>
               </ul>
             </div>
 
             {/* 주변 시설 */}
-            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-4 sm:p-6">
-              <h3 className="text-sm sm:text-base font-bold text-white mb-2 sm:mb-3 flex items-center gap-2">
+            <div className="bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] p-5 sm:p-7">
+              <h3 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A9F6D]" />
                 주변 시설안내
               </h3>
-              <ul className="space-y-2 text-gray-300 text-xs sm:text-sm">
+              <ul className="space-y-3 text-gray-300 text-xs sm:text-sm">
                 <li className="flex justify-between"><span>꾸지나무골 해수욕장</span><span className="text-[#4A90A4]">차량 6분</span></li>
                 <li className="flex justify-between"><span>만대항 당봉 전망대</span><span className="text-[#4A90A4]">차량 10분</span></li>
                 <li className="flex justify-between"><span>용난굴</span><span className="text-[#4A90A4]">차량 11분</span></li>
