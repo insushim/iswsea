@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-6">바로가기</h4>
+            <h4 className="text-xl font-bold mb-6">바로가기</h4>
             <ul className="space-y-3">
               <li>
                 <a
