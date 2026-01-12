@@ -98,7 +98,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20 z-[1] sm:hidden" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 pt-16 sm:pt-0">
+      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 pt-[30vh] sm:pt-0">
         <div className="w-full max-w-none px-4 md:px-8 lg:px-16">
           {/* Logo Mark - PC만 */}
           <motion.div
