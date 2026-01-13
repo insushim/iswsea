@@ -95,6 +95,17 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={pensionInfo.yapenBookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-[#FF6B35] transition-colors"
+                >
+                  실시간 예약
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </li>
+              <li>
+                <a
                   href="http://www.always-design.com/tour/taean/taean_badatime.html"
                   target="_blank"
                   rel="noopener noreferrer"

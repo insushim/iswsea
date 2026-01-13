@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ChevronDown, Calendar, Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown, Calendar, Eye, Clock } from "lucide-react";
 import { heroImages, pensionInfo } from "@/data/pension";
 
 // Ken Burns 효과 - 각 슬라이드마다 다른 방향으로 줌/패닝
@@ -21,6 +21,28 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [direction, setDirection] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 실제 뷰포트 높이 계산 (모바일 브라우저 주소창 고려)
+  useEffect(() => {
+    const updateHeight = () => {
+      setViewportHeight(window.innerHeight);
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    updateHeight();
+
+    // resize와 orientationchange만 passive하게 처리
+    window.addEventListener('resize', updateHeight, { passive: true });
+    window.addEventListener('orientationchange', updateHeight, { passive: true });
+
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('orientationchange', updateHeight);
+    };
+  }, []);
+
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -53,9 +75,15 @@ export default function Hero() {
   const currentImage = heroImages[currentSlide];
   const currentKenBurns = kenBurnsVariants[currentSlide % kenBurnsVariants.length];
 
+  // 히어로 섹션은 항상 뷰포트 높이에 맞춤 (첫 화면을 넘어가지 않음)
+  const sectionHeight = viewportHeight ? `${viewportHeight}px` : '100dvh';
+
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* 배경 이미지 - 전체 화면 */}
+    <section
+      className="relative w-full"
+      style={{ height: sectionHeight, minHeight: sectionHeight, maxHeight: sectionHeight, overflow: 'hidden' }}
+    >
+      {/* PC: 배경 이미지 - 전체 화면 */}
       <AnimatePresence initial={true} mode="wait">
         <motion.div
           key={currentSlide}
@@ -63,7 +91,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 hidden sm:block"
         >
           <motion.img
             key={`img-${currentSlide}`}
@@ -86,7 +114,7 @@ export default function Hero() {
             }}
           />
           {/* Dark Overlay - PC만 */}
-          <div className="absolute inset-0 bg-black/35 hidden sm:block" />
+          <div className="absolute inset-0 bg-black/35" />
         </motion.div>
       </AnimatePresence>
 
@@ -94,18 +122,182 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
-      {/* 모바일: 중앙 그라데이션 오버레이 (텍스트 가독성) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20 z-[1] sm:hidden" />
+      {/* 모바일 레이아웃 - 전체 구조 */}
+      <div className="absolute inset-0 z-10 flex flex-col sm:hidden" style={{ height: '100%', maxHeight: '100%', overflow: 'hidden' }}>
+        {/* 상단: 헤더 높이만큼 여백 (약 80px - 로고+텍스트+여백) */}
+        <div className="h-[80px] flex-shrink-0" />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 pt-[15vh] sm:pt-0">
+        {/* 사진 영역 - 헤더 텍스트 바로 아래에서 시작 */}
+        <div className="relative flex-shrink-0 overflow-hidden" style={{ height: '40%' }}>
+          <AnimatePresence initial={true} mode="wait">
+            <motion.div
+              key={`mobile-${currentSlide}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <motion.img
+                key={`mobile-img-${currentSlide}`}
+                src={currentImage.src}
+                alt={currentImage.alt}
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{
+                  scale: currentKenBurns.scale[0],
+                  x: currentKenBurns.x[0],
+                  y: currentKenBurns.y[0]
+                }}
+                animate={{
+                  scale: currentKenBurns.scale[1],
+                  x: currentKenBurns.x[1],
+                  y: currentKenBurns.y[1]
+                }}
+                transition={{
+                  duration: 7,
+                  ease: "linear"
+                }}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* 하단 컨텐츠 영역 - 검은 배경 */}
+        <div className="flex-1 flex flex-col px-5 pt-3 pb-4 bg-[#0F1419]">
+          {/* 텍스트 영역 */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center"
+            >
+              <motion.h1
+                className="text-xl font-bold text-white mb-1 leading-tight tracking-tight"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+              >
+                {currentImage.title}
+              </motion.h1>
+              <motion.p
+                className="text-sm text-white/80 font-light"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+              >
+                {currentImage.subtitle}
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* 텍스트와 버튼 사이 여백 */}
+          <div className="h-8" />
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="w-full flex flex-col gap-2"
+          >
+            {/* 첫 줄: 네이버예약 + 실시간예약 */}
+            <div className="flex gap-2">
+              <motion.a
+                href={pensionInfo.naverBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-1.5 h-[44px] bg-[#03C75A] text-white font-semibold text-sm rounded-lg"
+                whileTap={{ scale: 0.97 }}
+              >
+                <Calendar className="w-4 h-4" />
+                <span>네이버예약</span>
+              </motion.a>
+              <motion.a
+                href={pensionInfo.yapenBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-1.5 h-[44px] bg-[#FF6B35] text-white font-semibold text-sm rounded-lg"
+                whileTap={{ scale: 0.97 }}
+              >
+                <Clock className="w-4 h-4" />
+                <span>실시간예약</span>
+              </motion.a>
+            </div>
+            {/* 둘째 줄: 객실보기 */}
+            <motion.a
+              href="#rooms"
+              className="w-full flex items-center justify-center gap-1.5 h-[44px] bg-white/10 border border-white/30 text-white font-semibold text-sm rounded-lg"
+              whileTap={{ scale: 0.97 }}
+            >
+              <Eye className="w-4 h-4" />
+              <span>객실 보기</span>
+            </motion.a>
+          </motion.div>
+
+          {/* 남은 공간을 균등하게 채움 */}
+          <div className="flex-1 min-h-[20px]" />
+
+          {/* 하단: Progress Bar + Scroll */}
+          <div className="flex flex-col items-center">
+            {/* Progress Bar */}
+            <div className="flex items-center gap-1.5 mb-3">
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className="group relative"
+                  aria-label={`슬라이드 ${index + 1}`}
+                >
+                  <div
+                    className={`h-1 rounded-full transition-all duration-500 ${
+                      index === currentSlide
+                        ? "w-6 bg-white"
+                        : "w-3 bg-white/40"
+                    }`}
+                  />
+                  {index === currentSlide && (
+                    <motion.div
+                      className="absolute top-0 left-0 h-1 bg-white/60 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 7, ease: "linear" }}
+                      key={`progress-${currentSlide}`}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Scroll Indicator with text */}
+            <motion.a
+              href="#about"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, y: [0, 3, 0] }}
+              transition={{
+                opacity: { delay: 0.8 },
+                y: { duration: 1.5, repeat: Infinity }
+              }}
+              className="flex flex-col items-center text-white/50"
+            >
+              <span className="text-[10px] tracking-[0.15em] uppercase mb-0.5">Scroll</span>
+              <ChevronDown className="w-4 h-4" />
+            </motion.a>
+          </div>
+        </div>
+      </div>
+
+      {/* PC 레이아웃: 기존 유지 */}
+      <div className="relative z-10 h-full hidden sm:flex flex-col justify-center items-center text-center px-6">
         <div className="w-full max-w-none px-4 md:px-8 lg:px-16">
           {/* Logo Mark - PC만 */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden sm:flex items-center justify-center gap-3 mb-8"
+            className="flex items-center justify-center gap-3 mb-8"
           >
             <motion.div
               className="w-16 h-[1px] bg-white/60"
@@ -134,7 +326,7 @@ export default function Hero() {
               transition={{ duration: 0.5 }}
             >
               <motion.h1
-                className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 sm:mb-4 leading-tight tracking-tight"
+                className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight tracking-tight"
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
@@ -144,7 +336,7 @@ export default function Hero() {
                 </span>
               </motion.h1>
               <motion.p
-                className="text-base sm:text-2xl md:text-3xl text-white/90 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+                className="text-2xl md:text-3xl text-white/90 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
@@ -159,28 +351,38 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-7 md:gap-8 lg:gap-10"
+            className="flex flex-row items-center justify-center gap-4 md:gap-5 lg:gap-6"
             style={{ marginTop: '40px' }}
           >
             <motion.a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-3 sm:gap-4 w-[220px] sm:w-[260px] h-[50px] sm:h-[60px] bg-[#03C75A] text-white font-semibold text-sm sm:text-lg rounded-full transition-all hover:bg-[#02b351]"
+              className="group flex items-center justify-center gap-3 w-[200px] lg:w-[220px] h-[56px] lg:h-[60px] bg-[#03C75A] text-white font-semibold text-base lg:text-lg rounded-full transition-all hover:bg-[#02b351]"
               whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(3,199,90,0.4)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Calendar className="w-5 h-5" />
               <span>네이버 예약</span>
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+            <motion.a
+              href={pensionInfo.yapenBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center gap-3 w-[200px] lg:w-[220px] h-[56px] lg:h-[60px] bg-[#FF6B35] text-white font-semibold text-base lg:text-lg rounded-full transition-all hover:bg-[#E55A2B]"
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(255,107,53,0.4)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Clock className="w-5 h-5" />
+              <span>실시간 예약</span>
             </motion.a>
             <motion.a
               href="#rooms"
-              className="group flex items-center justify-center w-[220px] sm:w-[220px] h-[50px] sm:h-[60px] bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-sm sm:text-lg rounded-full transition-all"
+              className="group flex items-center justify-center w-[180px] lg:w-[200px] h-[56px] lg:h-[60px] bg-white/10 backdrop-blur-md border-2 border-white/60 text-white font-semibold text-base lg:text-lg rounded-full transition-all"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
             >
-              <Eye className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <Eye className="w-5 h-5 mr-2" />
               <span>객실 보기</span>
             </motion.a>
           </motion.div>
@@ -208,8 +410,8 @@ export default function Hero() {
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
       </motion.button>
 
-      {/* Progress Bar - 하단 프로그레스 */}
-      <div className="absolute bottom-20 sm:bottom-20 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
+      {/* Progress Bar - PC용 하단 프로그레스 */}
+      <div className="absolute bottom-20 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 hidden sm:flex items-center gap-3">
         {heroImages.map((_, index) => (
           <button
             key={index}
@@ -252,21 +454,21 @@ export default function Hero() {
         <span className="text-white/70 text-lg">{String(heroImages.length).padStart(2, "0")}</span>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - PC용 */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-6 sm:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 z-20 hidden sm:block"
       >
         <motion.a
           href="#about"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-1 sm:gap-2 text-white/80 hover:text-white transition-colors"
+          className="flex flex-col items-center gap-2 text-white/80 hover:text-white transition-colors"
         >
-          <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase font-light">Scroll</span>
-          <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="text-xs tracking-[0.2em] uppercase font-light">Scroll</span>
+          <ChevronDown className="w-5 h-5" />
         </motion.a>
       </motion.div>
 

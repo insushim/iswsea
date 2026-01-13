@@ -52,7 +52,7 @@ export default function Special() {
   };
 
   return (
-    <section id="special" className="bg-[#0F1419] overflow-hidden" ref={ref} style={{ paddingTop: '30px', paddingBottom: '60px' }}>
+    <section id="special" className="bg-[#0F1419] overflow-hidden pt-8 pb-14 lg:pt-24 lg:pb-24" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
         {/* Section Header */}
         <motion.div
@@ -68,8 +68,8 @@ export default function Special() {
             특별한 시설
           </h2>
           <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-xl mx-auto px-2 text-center">
-            바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장,<br className="hidden sm:block" />
-            갯벌체험, 4계절 모두 꽃이 피는 정원까지
+            <span className="sm:hidden">수영장, 개별 스파, 바베큐장<br />갯벌체험, 4계절 정원까지</span>
+            <span className="hidden sm:inline">바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장,<br />갯벌체험, 4계절 모두 꽃이 피는 정원까지</span>
           </p>
         </motion.div>
 

@@ -17,6 +17,7 @@ import {
   Maximize2,
   Grid3X3,
   MapPin,
+  Clock,
 } from "lucide-react";
 import { rooms, pensionInfo } from "@/data/pension";
 import Link from "next/link";
@@ -260,7 +261,7 @@ export default function RoomDetailPage() {
                   {/* Room Title & Sub Info */}
                   <div className="text-center mb-4">
                     <h3 className="text-2xl font-bold text-white">{room.name}</h3>
-                    <p className="text-[#4A90A4] text-sm">기준{room.capacity.standard}명 / 최대{room.capacity.max}명 ({room.size})</p>
+                    <p className="text-[#4A90A4] text-sm whitespace-nowrap">기준 {room.capacity.standard}명 / 최대 {room.capacity.max}명 ({room.size})</p>
                   </div>
 
                   {/* Room Info Table */}
@@ -324,36 +325,52 @@ export default function RoomDetailPage() {
                     <span className="font-bold text-xl">{pensionInfo.phone}</span>
                   </a>
 
-                  {/* Big CTA Button - 네이버 예약 */}
-                  <a
-                    href={pensionInfo.naverBookingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative block w-full py-6 overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#03C75A]/20 mb-5"
-                  >
-                    {/* Button Background - 네이버 녹색 */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#03C75A] via-[#04D861] to-[#03C75A] bg-[length:200%_100%] group-hover:animate-[shimmer_1.5s_infinite]" />
-                    <div className="absolute inset-[1px] rounded-[11px] bg-gradient-to-r from-[#03C75A] to-[#04D861]" />
+                  {/* CTA Buttons - 네이버 예약 & 실시간 예약 */}
+                  <div className="flex gap-3 mb-5">
+                    {/* 네이버 예약 */}
+                    <a
+                      href={pensionInfo.naverBookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex-1 block py-5 overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#03C75A]/20"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#03C75A] via-[#04D861] to-[#03C75A] bg-[length:200%_100%] group-hover:animate-[shimmer_1.5s_infinite]" />
+                      <div className="absolute inset-[1px] rounded-[11px] bg-gradient-to-r from-[#03C75A] to-[#04D861]" />
+                      <div className="relative flex items-center justify-center gap-2">
+                        <span className="text-white font-bold text-base sm:text-lg tracking-wide">네이버 예약</span>
+                        <ExternalLink className="w-4 h-4 text-white/80 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </a>
 
-                    <div className="relative flex items-center justify-center gap-3">
-                      <span className="text-white font-bold text-xl tracking-wide">네이버 예약하기</span>
-                      <ExternalLink className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </a>
+                    {/* 실시간 예약 */}
+                    <a
+                      href={pensionInfo.yapenBookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex-1 block py-5 overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#FF6B35]/20"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35] via-[#FF7F4D] to-[#FF6B35] bg-[length:200%_100%] group-hover:animate-[shimmer_1.5s_infinite]" />
+                      <div className="absolute inset-[1px] rounded-[11px] bg-gradient-to-r from-[#FF6B35] to-[#FF7F4D]" />
+                      <div className="relative flex items-center justify-center gap-2">
+                        <Clock className="w-4 h-4 text-white/80" />
+                        <span className="text-white font-bold text-base sm:text-lg tracking-wide">실시간 예약</span>
+                      </div>
+                    </a>
+                  </div>
 
                   {/* Capacity & Check-in/out Info - Same Row */}
-                  <div className="flex items-center justify-center gap-6 text-sm">
-                    <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm">
+                    <div className="flex items-center gap-2 whitespace-nowrap">
                       <Users className="w-4 h-4 text-[#4A9F6D]" />
                       <span className="text-gray-400">기준 <span className="text-white font-medium">{room.capacity.standard}명</span></span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 whitespace-nowrap">
                       <Users className="w-4 h-4 text-[#4A90A4]" />
                       <span className="text-gray-400">최대 <span className="text-white font-medium">{room.capacity.max}명</span></span>
                     </div>
-                    <span className="text-[#2a3a4a]">|</span>
-                    <span className="text-gray-400">체크인 <span className="text-[#4A9F6D] font-medium">{pensionInfo.checkIn}</span></span>
-                    <span className="text-gray-400">체크아웃 <span className="text-[#4A90A4] font-medium">{pensionInfo.checkOut}</span></span>
+                    <span className="text-[#2a3a4a] hidden sm:inline">|</span>
+                    <span className="text-gray-400 whitespace-nowrap">체크인 <span className="text-[#4A9F6D] font-medium">{pensionInfo.checkIn}</span></span>
+                    <span className="text-gray-400 whitespace-nowrap">체크아웃 <span className="text-[#4A90A4] font-medium">{pensionInfo.checkOut}</span></span>
                   </div>
                 </div>
               </div>

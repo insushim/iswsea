@@ -16,6 +16,7 @@ export const pensionInfo = {
   yapenId: "33340",
   naverPlaceId: "12146230",
   naverBookingUrl: "https://map.naver.com/p/entry/place/12146230?placePath=/booking",
+  yapenBookingUrl: "https://rev.yapen.co.kr/external/set?ypIdx=33340",
 };
 
 export const heroImages = [

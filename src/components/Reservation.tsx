@@ -20,8 +20,7 @@ export default function Reservation() {
   return (
     <section
       id="reservation"
-      className="bg-[#0F1419] text-white relative overflow-hidden"
-      style={{ paddingTop: '30px', paddingBottom: '60px' }}
+      className="bg-[#0F1419] text-white relative overflow-hidden pt-8 pb-14 lg:pt-24 lg:pb-24"
       ref={ref}
     >
 
@@ -46,7 +45,7 @@ export default function Reservation() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
         >
           {/* 네이버 예약 */}
           <a
@@ -60,6 +59,20 @@ export default function Reservation() {
             </div>
             <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 sm:mb-1">네이버 예약</h3>
             <p className="text-gray-500 text-xs">간편 예약</p>
+          </a>
+
+          {/* 실시간 예약 */}
+          <a
+            href={pensionInfo.yapenBookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col items-center justify-center p-4 sm:p-6 bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a] hover:border-[#FF6B35] transition-all hover:scale-[1.02]"
+          >
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[#FF6B35] flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-transform">
+              <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 sm:mb-1">실시간 예약</h3>
+            <p className="text-gray-500 text-xs">빈방 확인</p>
           </a>
 
           {/* 전화 예약 */}
@@ -97,7 +110,7 @@ export default function Reservation() {
           </div>
 
           {/* 요금 기준 */}
-          <div className="col-span-2 sm:col-span-1 flex flex-col items-center justify-center p-4 sm:p-6 bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a]">
+          <div className="flex flex-col items-center justify-center p-4 sm:p-6 bg-[#1a2332] rounded-xl sm:rounded-2xl border border-[#2a3a4a]">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[#0d1520] flex items-center justify-center mb-2 sm:mb-3">
               <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-[#F5B041]" />
             </div>

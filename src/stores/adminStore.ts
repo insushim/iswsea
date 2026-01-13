@@ -170,14 +170,16 @@ export const useAdminStore = create<AdminState>()(
   persist(
     (set, get) => ({
       isAuthenticated: false,
-      adminPassword: "woodinsea2024",
+      adminPassword: "",
       notices: defaultNotices,
       events: defaultEvents,
       roomPrices: [],
       popupEnabled: true,
 
       login: (password: string) => {
-        const isValid = password === get().adminPassword;
+        const storedPassword = get().adminPassword;
+        const envPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "woodinsea2024";
+        const isValid = password === (storedPassword || envPassword);
         if (isValid) {
           set({ isAuthenticated: true });
         }

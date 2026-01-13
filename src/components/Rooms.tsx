@@ -11,6 +11,7 @@ import {
   Eye,
   ArrowRight,
   Ruler,
+  Clock,
 } from "lucide-react";
 import { rooms, pensionInfo } from "@/data/pension";
 import Link from "next/link";
@@ -27,7 +28,7 @@ export default function Rooms() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="rooms" className="bg-[var(--background-alt)]" ref={ref} style={{ paddingTop: '30px', paddingBottom: '40px' }}>
+    <section id="rooms" className="bg-[var(--background-alt)] pt-8 pb-10 lg:pt-24 lg:pb-24" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
         {/* Section Header */}
         <motion.div
@@ -44,8 +45,8 @@ export default function Rooms() {
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] mx-auto mb-4 sm:mb-8 rounded-full" />
           <p className="text-[var(--foreground-muted)] text-base sm:text-lg lg:text-xl mx-auto px-4 text-center">
-            숲속의바다 펜션의 모든 객실은 아름다운 오션뷰를 자랑합니다.<br />
-            객실마다 개별적인 바베큐 테라스를 가지고 있습니다.
+            <span className="sm:hidden">모든 객실에서 아름다운 오션뷰와<br />개별 바베큐 테라스를 즐기세요</span>
+            <span className="hidden sm:inline">숲속의바다 펜션의 모든 객실은 아름다운 오션뷰를 자랑합니다.<br />객실마다 개별적인 바베큐 테라스를 가지고 있습니다.</span>
           </p>
         </motion.div>
 
@@ -181,16 +182,25 @@ export default function Rooms() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-20 mb-4 w-full flex justify-center items-center px-6"
+          className="mt-20 mb-4 w-full flex flex-col sm:flex-row justify-center items-center gap-4 px-6"
         >
           <a
             href={pensionInfo.naverBookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-12 py-6 bg-[#03C75A]/80 hover:bg-[#03C75A] backdrop-blur-md border border-[#03C75A]/50 text-white font-bold text-xl rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-2xl"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-[#03C75A]/80 hover:bg-[#03C75A] backdrop-blur-md border border-[#03C75A]/50 text-white font-bold text-lg rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-2xl"
           >
             <span>네이버 예약하기</span>
-            <ExternalLink className="w-6 h-6" />
+            <ExternalLink className="w-5 h-5" />
+          </a>
+          <a
+            href={pensionInfo.yapenBookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-[#FF6B35]/80 hover:bg-[#FF6B35] backdrop-blur-md border border-[#FF6B35]/50 text-white font-bold text-lg rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-2xl"
+          >
+            <Clock className="w-5 h-5" />
+            <span>실시간 예약하기</span>
           </a>
         </motion.div>
       </div>

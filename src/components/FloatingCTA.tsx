@@ -1,21 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Calendar, X, MessageCircle } from "lucide-react";
+import { Phone, Calendar, X, MessageCircle, Clock } from "lucide-react";
 import { pensionInfo } from "@/data/pension";
 
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 500);
+    const updateVisibility = () => {
+      setIsVisible(lastScrollY.current > 500);
+      ticking.current = false;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      lastScrollY.current = window.scrollY;
+      if (!ticking.current) {
+        requestAnimationFrame(updateVisibility);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleToggle = useCallback(() => {
+    setIsExpanded(prev => !prev);
   }, []);
 
   return (
@@ -52,6 +67,24 @@ export default function FloatingCTA() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8, y: 20 }}
                   transition={{ delay: 0.05 }}
+                  href={pensionInfo.yapenBookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 px-8 py-5 bg-[#FF6B35] shadow-2xl rounded-full text-white hover:scale-105 transition-transform hover:shadow-[0_10px_40px_rgba(255,107,53,0.4)] min-w-[220px]"
+                >
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6" />
+                  </div>
+                  <div className="text-left whitespace-nowrap">
+                    <span className="block text-sm text-white/80" style={{ color: 'rgba(255,255,255,0.8)' }}>실시간</span>
+                    <span className="block text-lg font-bold !text-white" style={{ color: 'white' }}>예약하기</span>
+                  </div>
+                </motion.a>
+                <motion.a
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                  transition={{ delay: 0 }}
                   href={pensionInfo.naverBookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -102,7 +135,7 @@ export default function FloatingCTA() {
               </>
             )}
             <motion.button
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={handleToggle}
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
               animate={!isExpanded ? {

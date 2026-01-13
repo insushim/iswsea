@@ -21,8 +21,7 @@ export default function Notice() {
   return (
     <section
       id="notice"
-      className="bg-[#0F1419] text-white relative overflow-hidden"
-      style={{ paddingTop: "60px", paddingBottom: "80px" }}
+      className="bg-[#0F1419] text-white relative overflow-hidden pt-14 pb-16 lg:pt-24 lg:pb-24"
       ref={ref}
     >
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24 relative z-10 flex flex-col items-center">

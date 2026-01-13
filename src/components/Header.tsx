@@ -8,6 +8,7 @@ import {
   Phone,
   Instagram,
   Calendar,
+  Clock,
 } from "lucide-react";
 import { pensionInfo, navItems } from "@/data/pension";
 
@@ -72,10 +73,22 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden lg:flex items-center gap-2 rounded-full transition-all font-bold whitespace-nowrap hover:-translate-y-0.5 bg-[#03C75A] hover:bg-[#02b351] border border-[#03C75A]"
-                style={{ padding: '12px 28px' }}
+                style={{ padding: '12px 24px' }}
               >
                 <Calendar className="w-5 h-5 text-white" />
-                <span className="text-lg text-white">네이버 예약</span>
+                <span className="text-base text-white">네이버 예약</span>
+              </a>
+
+              {/* Quick Reservation - 실시간 예약 */}
+              <a
+                href={pensionInfo.yapenBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden lg:flex items-center gap-2 rounded-full transition-all font-bold whitespace-nowrap hover:-translate-y-0.5 bg-[#FF6B35] hover:bg-[#E55A2B] border border-[#FF6B35]"
+                style={{ padding: '12px 24px' }}
+              >
+                <Clock className="w-5 h-5 text-white" />
+                <span className="text-base text-white">실시간 예약</span>
               </a>
 
               {/* Mobile Menu Toggle */}
@@ -181,16 +194,27 @@ export default function Header() {
                 transition={{ delay: 0.5 }}
                 className="space-y-3 mt-auto"
               >
-                {/* 네이버 예약 버튼 */}
-                <a
-                  href={pensionInfo.naverBookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 w-full py-5 bg-[#03C75A] text-white rounded-2xl font-bold text-lg hover:bg-[#02b351] transition-all shadow-[0_8px_30px_rgba(3,199,90,0.3)]"
-                >
-                  <Calendar className="w-5 h-5" />
-                  네이버 예약하기
-                </a>
+                {/* 예약 버튼들 */}
+                <div className="flex gap-3">
+                  <a
+                    href={pensionInfo.naverBookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 py-4 bg-[#03C75A] text-white rounded-2xl font-bold text-base hover:bg-[#02b351] transition-all shadow-[0_8px_30px_rgba(3,199,90,0.3)]"
+                  >
+                    <Calendar className="w-5 h-5" />
+                    네이버 예약
+                  </a>
+                  <a
+                    href={pensionInfo.yapenBookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 py-4 bg-[#FF6B35] text-white rounded-2xl font-bold text-base hover:bg-[#E55A2B] transition-all shadow-[0_8px_30px_rgba(255,107,53,0.3)]"
+                  >
+                    <Clock className="w-5 h-5" />
+                    실시간 예약
+                  </a>
+                </div>
 
                 {/* 연락처 버튼들 */}
                 <div className="flex gap-3">
