@@ -122,98 +122,109 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
-      {/* 모바일 레이아웃 - 전체 구조 (고정 레이아웃, 여백 고정) */}
-      <div className="absolute inset-0 z-10 flex flex-col sm:hidden bg-[#0F1419]" style={{ height: '100%', maxHeight: '100%', overflow: 'hidden' }}>
-        {/* 헤더 영역 여백 */}
-        <div style={{ height: '76px', flexShrink: 0 }} />
+      {/* 모바일 레이아웃 - 전체 구조 */}
+      {isMobile && viewportHeight && (
+        <div
+          className="absolute inset-0 z-10 flex flex-col sm:hidden bg-[#0F1419]"
+          style={{ height: `${viewportHeight}px`, maxHeight: `${viewportHeight}px`, overflow: 'hidden' }}
+        >
+          {/* 헤더 영역 여백 - 사진 1mm 더 아래로 */}
+          <div style={{ height: '80px', flexShrink: 0 }} />
 
-        {/* 사진 영역 - 직각 모서리 */}
-        <div className="relative overflow-hidden" style={{ height: '32%', flexShrink: 0 }}>
-          <AnimatePresence initial={true} mode="wait">
-            <motion.div
-              key={`mobile-${currentSlide}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-              className="absolute inset-0 overflow-hidden"
-            >
-              <motion.img
-                key={`mobile-img-${currentSlide}`}
-                src={currentImage.src}
-                alt={currentImage.alt}
-                className="absolute inset-0 w-full h-full object-cover"
-                initial={{
-                  scale: currentKenBurns.scale[0],
-                  x: currentKenBurns.x[0],
-                  y: currentKenBurns.y[0]
-                }}
-                animate={{
-                  scale: currentKenBurns.scale[1],
-                  x: currentKenBurns.x[1],
-                  y: currentKenBurns.y[1]
-                }}
-                transition={{
-                  duration: 7,
-                  ease: "linear"
-                }}
-              />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* 사진 아래 컨텐츠: Progress Bar + 텍스트 + 버튼 (묶어서 아래로) */}
-        <div style={{ flexShrink: 0 }} className="px-4 pt-3">
-          {/* Progress Bar - 사진 밖으로 */}
-          <div className="flex items-center justify-center gap-1.5 mb-3">
-            {heroImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className="group relative"
-                aria-label={`슬라이드 ${index + 1}`}
+          {/* 사진 영역 - 직각 모서리 */}
+          <div className="relative overflow-hidden" style={{ height: '30%', flexShrink: 0 }}>
+            <AnimatePresence initial={true} mode="wait">
+              <motion.div
+                key={`mobile-${currentSlide}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2, ease: "easeInOut" }}
+                className="absolute inset-0 overflow-hidden"
               >
-                <div
-                  className={`h-[3px] rounded-full transition-all duration-500 ${
-                    index === currentSlide
-                      ? "w-5 bg-white"
-                      : "w-2 bg-white/40"
-                  }`}
+                <motion.img
+                  key={`mobile-img-${currentSlide}`}
+                  src={currentImage.src}
+                  alt={currentImage.alt}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  initial={{
+                    scale: currentKenBurns.scale[0],
+                    x: currentKenBurns.x[0],
+                    y: currentKenBurns.y[0]
+                  }}
+                  animate={{
+                    scale: currentKenBurns.scale[1],
+                    x: currentKenBurns.x[1],
+                    y: currentKenBurns.y[1]
+                  }}
+                  transition={{
+                    duration: 7,
+                    ease: "linear"
+                  }}
                 />
-                {index === currentSlide && (
-                  <motion.div
-                    className="absolute top-0 left-0 h-[3px] bg-white/60 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 7, ease: "linear" }}
-                    key={`progress-${currentSlide}`}
-                  />
-                )}
-              </button>
-            ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* 텍스트 영역 */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-4"
-            >
-              <h1 className="text-lg font-bold text-white leading-tight tracking-tight">
-                {currentImage.title}
-              </h1>
-              <p className="text-xs text-white/60 font-light mt-1">
-                {currentImage.subtitle}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+          {/* 사진과 Progress Bar 사이 여백 */}
+          <div style={{ height: '12px', flexShrink: 0 }} />
+
+          {/* Progress Bar + 텍스트 영역 */}
+          <div style={{ flexShrink: 0 }} className="px-4">
+            {/* Progress Bar */}
+            <div className="flex items-center justify-center gap-1.5 mb-2">
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className="group relative"
+                  aria-label={`슬라이드 ${index + 1}`}
+                >
+                  <div
+                    className={`h-[3px] rounded-full transition-all duration-500 ${
+                      index === currentSlide
+                        ? "w-5 bg-white"
+                        : "w-2 bg-white/40"
+                    }`}
+                  />
+                  {index === currentSlide && (
+                    <motion.div
+                      className="absolute top-0 left-0 h-[3px] bg-white/60 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 7, ease: "linear" }}
+                      key={`progress-${currentSlide}`}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* 텍스트 영역 */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-center"
+              >
+                <h1 className="text-lg font-bold text-white leading-tight tracking-tight">
+                  {currentImage.title}
+                </h1>
+                <p className="text-xs text-white/60 font-light mt-1">
+                  {currentImage.subtitle}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* 텍스트와 버튼 사이 여백 */}
+          <div style={{ height: '16px', flexShrink: 0 }} />
 
           {/* CTA Buttons - 3줄 */}
-          <div className="flex flex-col gap-2.5">
+          <div style={{ flexShrink: 0 }} className="px-4 flex flex-col gap-2.5">
             <a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
@@ -240,30 +251,33 @@ export default function Hero() {
               <span>객실 보기</span>
             </a>
           </div>
-        </div>
 
-        {/* 하단: Scroll Indicator - 고정 높이로 여백 문제 해결 */}
-        <div style={{ height: '60px', flexShrink: 0 }} className="flex flex-col items-center justify-center">
-          <a
-            href="#about"
-            className="flex flex-col items-center gap-1 text-white/60"
-          >
-            <motion.span
-              className="text-[10px] tracking-[0.2em] uppercase font-light"
-              animate={{ opacity: [0.4, 1, 0.4] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          {/* 남은 공간 채우고 Scroll을 맨 아래에 배치 */}
+          <div className="flex-1" />
+
+          {/* 하단: Scroll Indicator - 맨 아래 고정 */}
+          <div style={{ height: '50px', flexShrink: 0 }} className="flex flex-col items-center justify-center">
+            <a
+              href="#about"
+              className="flex flex-col items-center gap-1 text-white/60"
             >
-              Scroll
-            </motion.span>
-            <motion.div
-              animate={{ y: [0, 4, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <ChevronDown className="w-4 h-4" />
-            </motion.div>
-          </a>
+              <motion.span
+                className="text-[10px] tracking-[0.2em] uppercase font-light"
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                Scroll
+              </motion.span>
+              <motion.div
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <ChevronDown className="w-4 h-4" />
+              </motion.div>
+            </a>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* PC 레이아웃: 기존 유지 */}
       <div className="relative z-10 h-full hidden sm:flex flex-col justify-center items-center text-center px-6">
