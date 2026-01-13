@@ -173,23 +173,40 @@ section {
   font-family: "Pretendard Variable", -apple-system, sans-serif;
 }
 
-/* 스크롤바 스타일 */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* 스크롤바 스타일 - PC용 */
+@media (min-width: 641px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background-alt);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: var(--background-alt);
-}
+/* 모바일에서 모든 스크롤바 완전히 숨기기 */
+@media (max-width: 640px) {
+  * {
+    -ms-overflow-style: none;  /* IE, Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark);
+  *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+  }
 }
 
 /* 선택 영역 스타일 */
