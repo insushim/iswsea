@@ -122,13 +122,13 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
-      {/* 모바일 레이아웃 - 전체 구조 (고정 레이아웃) */}
+      {/* 모바일 레이아웃 - 전체 구조 (고정 레이아웃, 여백 고정) */}
       <div className="absolute inset-0 z-10 flex flex-col sm:hidden bg-[#0F1419]" style={{ height: '100%', maxHeight: '100%', overflow: 'hidden' }}>
-        {/* 헤더 영역 여백 - 사진 더 내림 */}
-        <div style={{ height: '82px', flexShrink: 0 }} />
+        {/* 헤더 영역 여백 */}
+        <div style={{ height: '76px', flexShrink: 0 }} />
 
-        {/* 사진 영역 - 상하 모두 둥근 모서리 */}
-        <div className="relative overflow-hidden mx-3 rounded-2xl" style={{ height: '34%', flexShrink: 0 }}>
+        {/* 사진 영역 - 직각 모서리 */}
+        <div className="relative overflow-hidden" style={{ height: '32%', flexShrink: 0 }}>
           <AnimatePresence initial={true} mode="wait">
             <motion.div
               key={`mobile-${currentSlide}`}
@@ -136,7 +136,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
-              className="absolute inset-0 rounded-2xl overflow-hidden"
+              className="absolute inset-0 overflow-hidden"
             >
               <motion.img
                 key={`mobile-img-${currentSlide}`}
@@ -160,9 +160,12 @@ export default function Hero() {
               />
             </motion.div>
           </AnimatePresence>
+        </div>
 
-          {/* Progress Bar - 사진 위에 오버레이 */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
+        {/* 사진 아래 컨텐츠: Progress Bar + 텍스트 + 버튼 (묶어서 아래로) */}
+        <div style={{ flexShrink: 0 }} className="px-4 pt-3">
+          {/* Progress Bar - 사진 밖으로 */}
+          <div className="flex items-center justify-center gap-1.5 mb-3">
             {heroImages.map((_, index) => (
               <button
                 key={index}
@@ -189,10 +192,8 @@ export default function Hero() {
               </button>
             ))}
           </div>
-        </div>
 
-        {/* 텍스트 영역 - 고정 높이 */}
-        <div style={{ height: '60px', flexShrink: 0 }} className="flex items-center justify-center px-4">
+          {/* 텍스트 영역 */}
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -200,7 +201,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-center"
+              className="text-center mb-4"
             >
               <h1 className="text-lg font-bold text-white leading-tight tracking-tight">
                 {currentImage.title}
@@ -210,39 +211,39 @@ export default function Hero() {
               </p>
             </motion.div>
           </AnimatePresence>
+
+          {/* CTA Buttons - 3줄 */}
+          <div className="flex flex-col gap-2.5">
+            <a
+              href={pensionInfo.naverBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#03C75A] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>네이버 예약</span>
+            </a>
+            <a
+              href={pensionInfo.yapenBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#FF6B35] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
+            >
+              <Clock className="w-4 h-4" />
+              <span>실시간 예약</span>
+            </a>
+            <a
+              href="#rooms"
+              className="w-full flex items-center justify-center gap-2 h-[46px] bg-white/10 border border-white/30 text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
+            >
+              <Eye className="w-4 h-4" />
+              <span>객실 보기</span>
+            </a>
+          </div>
         </div>
 
-        {/* CTA Buttons - 고정 높이 영역, 더 아래로 */}
-        <div style={{ height: '180px', flexShrink: 0 }} className="px-4 flex flex-col justify-end pb-2 gap-2.5">
-          <a
-            href={pensionInfo.naverBookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#03C75A] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
-          >
-            <Calendar className="w-4 h-4" />
-            <span>네이버 예약</span>
-          </a>
-          <a
-            href={pensionInfo.yapenBookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#FF6B35] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
-          >
-            <Clock className="w-4 h-4" />
-            <span>실시간 예약</span>
-          </a>
-          <a
-            href="#rooms"
-            className="w-full flex items-center justify-center gap-2 h-[46px] bg-white/10 border border-white/30 text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
-          >
-            <Eye className="w-4 h-4" />
-            <span>객실 보기</span>
-          </a>
-        </div>
-
-        {/* 하단: Scroll Indicator - 나머지 공간 */}
-        <div className="flex-1 flex flex-col items-center justify-end pb-4">
+        {/* 하단: Scroll Indicator - 고정 높이로 여백 문제 해결 */}
+        <div style={{ height: '60px', flexShrink: 0 }} className="flex flex-col items-center justify-center">
           <a
             href="#about"
             className="flex flex-col items-center gap-1 text-white/60"
