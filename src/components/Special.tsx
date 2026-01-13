@@ -52,24 +52,24 @@ export default function Special() {
   };
 
   return (
-    <section id="special" className="bg-[#0F1419] overflow-hidden pt-8 pb-14 lg:pt-24 lg:pb-24" ref={ref}>
+    <section id="special" className="bg-[#0F1419] overflow-hidden pt-8 pb-14 lg:pt-12 lg:pb-12" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 lg:mb-16"
+          className="text-center mb-8 lg:mb-8"
         >
-          <p className="text-[var(--secondary)] text-sm sm:text-base tracking-[0.3em] uppercase mb-3 sm:mb-4 font-medium">
+          <p className="text-[var(--secondary)] text-sm sm:text-base tracking-[0.3em] uppercase mb-2 sm:mb-3 font-medium">
             SPECIAL FACILITIES
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[var(--foreground)] mb-4 sm:mb-6 font-display">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--foreground)] mb-3 sm:mb-4 font-display">
             특별한 시설
           </h2>
-          <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-xl mx-auto px-2 text-center">
+          <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-lg mx-auto px-2 text-center">
             <span className="sm:hidden">수영장, 개별 스파, 바베큐장<br />갯벌체험, 4계절 정원까지</span>
-            <span className="hidden sm:inline">바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장,<br />갯벌체험, 4계절 모두 꽃이 피는 정원까지</span>
+            <span className="hidden sm:inline">바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장, 갯벌체험, 4계절 모두 꽃이 피는 정원까지</span>
           </p>
         </motion.div>
 
@@ -120,13 +120,13 @@ export default function Special() {
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Left - Main Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-7"
+            className="lg:col-span-7 flex flex-col"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -135,7 +135,8 @@ export default function Special() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.4 }}
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-[16/9] shadow-2xl"
+                className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-auto shadow-2xl flex-1"
+                style={{ minHeight: '400px' }}
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -185,13 +186,13 @@ export default function Special() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Thumbnail Strip */}
-            <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto pb-2 scrollbar-hide">
+            {/* Thumbnail Strip - 모바일만 */}
+            <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto pb-2 scrollbar-hide lg:hidden">
               {activeSpecial.images.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setImageIndex(idx)}
-                  className={`flex-shrink-0 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all ${
+                  className={`flex-shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all ${
                     idx === imageIndex
                       ? "border-[var(--primary)] shadow-lg scale-105"
                       : "border-transparent opacity-60 hover:opacity-100"
@@ -205,8 +206,8 @@ export default function Special() {
               ))}
             </div>
 
-            {/* Navigation Buttons - Below Image */}
-            <div className="flex justify-center gap-3 sm:gap-4 mt-4 sm:mt-6">
+            {/* Navigation Buttons - 모바일만 */}
+            <div className="flex justify-center gap-3 sm:gap-4 mt-4 sm:mt-6 lg:hidden">
               <button
                 onClick={prevImage}
                 className="p-3 sm:p-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white transition-all hover:scale-110 shadow-lg"
@@ -230,32 +231,32 @@ export default function Special() {
             className="lg:col-span-5 flex flex-col"
           >
             {/* Icon & Description - Mobile: Compact */}
-            <div className="mb-6 lg:mb-10">
-              <div className="flex items-center gap-3 sm:gap-5 mb-4 sm:mb-8">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-[72px] lg:h-[72px] rounded-xl sm:rounded-2xl bg-[var(--primary)] flex items-center justify-center shadow-xl flex-shrink-0">
-                  {Icon && <Icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-white" />}
+            <div className="mb-4 lg:mb-4">
+              <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-[var(--primary)] flex items-center justify-center shadow-xl flex-shrink-0">
+                  {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[var(--secondary)] text-xs sm:text-sm lg:text-base font-medium tracking-wider">
+                  <p className="text-[var(--secondary)] text-xs sm:text-sm font-medium tracking-wider">
                     {activeSpecial.nameEn}
                   </p>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[var(--foreground)] truncate">
+                  <h3 className="text-xl sm:text-2xl lg:text-2xl font-bold text-[var(--foreground)] truncate">
                     {activeSpecial.name}
                   </h3>
                 </div>
               </div>
 
-              <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-xl leading-relaxed">
+              <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-base leading-relaxed">
                 {activeSpecial.description}
               </p>
             </div>
 
-            {/* Desktop: Vertical Tab List */}
+            {/* Desktop: Vertical Tab List - 컴팩트 */}
             <div className="hidden lg:block flex-1">
-              <h4 className="text-base font-semibold text-[var(--foreground-muted)] uppercase tracking-wider mb-5">
+              <h4 className="text-sm font-semibold text-[var(--foreground-muted)] uppercase tracking-wider mb-3">
                 모든 시설 보기
               </h4>
-              <div className="space-y-4 max-h-[420px] overflow-y-auto pr-2 scrollbar-thin">
+              <div className="space-y-2">
                 {specials.map((special, index) => {
                   const SpecialIcon = iconMap[special.icon];
                   const isActive = index === activeIndex;
@@ -264,14 +265,14 @@ export default function Special() {
                     <button
                       key={special.id}
                       onClick={() => handleSelectSpecial(index)}
-                      className={`w-full flex items-center gap-4 p-5 rounded-2xl text-left transition-all ${
+                      className={`w-full flex items-center gap-3 p-3 rounded-xl text-left transition-all ${
                         isActive
                           ? "bg-[var(--primary)] text-white shadow-lg"
                           : "bg-[#1a2332] hover:bg-[#243040] border border-[#2a3a4a]"
                       }`}
                     >
                       <div
-                        className={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                           isActive
                             ? "bg-white/20"
                             : "bg-[#0d1520]"
@@ -279,7 +280,7 @@ export default function Special() {
                       >
                         {SpecialIcon && (
                           <SpecialIcon
-                            className={`w-7 h-7 ${
+                            className={`w-5 h-5 ${
                               isActive ? "text-white" : "text-[var(--primary)]"
                             }`}
                           />
@@ -288,14 +289,14 @@ export default function Special() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <span
-                            className={`text-sm font-medium ${
+                            className={`text-xs font-medium ${
                               isActive ? "text-white/70" : "text-[var(--secondary)]"
                             }`}
                           >
                             {special.number}
                           </span>
                           <span
-                            className={`text-lg font-semibold truncate ${
+                            className={`text-sm font-semibold truncate ${
                               isActive ? "text-white" : "text-[var(--foreground)]"
                             }`}
                           >
@@ -303,7 +304,7 @@ export default function Special() {
                           </span>
                         </div>
                         <p
-                          className={`text-base truncate ${
+                          className={`text-xs truncate ${
                             isActive ? "text-white/80" : "text-[var(--foreground-muted)]"
                           }`}
                         >
@@ -311,7 +312,7 @@ export default function Special() {
                         </p>
                       </div>
                       <ChevronRight
-                        className={`w-6 h-6 flex-shrink-0 ${
+                        className={`w-5 h-5 flex-shrink-0 ${
                           isActive ? "text-white" : "text-gray-400"
                         }`}
                       />
@@ -321,15 +322,15 @@ export default function Special() {
               </div>
             </div>
 
-            {/* Next Button */}
-            <div className="flex items-center gap-4 mt-6 lg:mt-10 pt-6 lg:pt-8 border-t border-[#2a3a4a]">
+            {/* Next Button - 모바일만 */}
+            <div className="flex items-center gap-4 mt-6 pt-6 border-t border-[#2a3a4a] lg:hidden">
               <button
                 onClick={() =>
                   handleSelectSpecial(
                     activeIndex === specials.length - 1 ? 0 : activeIndex + 1
                   )
                 }
-                className="flex-1 flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 lg:py-5 bg-[var(--primary)] text-white border-2 border-[var(--primary)] rounded-xl font-bold text-base sm:text-lg hover:bg-[var(--primary-dark)] transition-all shadow-lg"
+                className="flex-1 flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 bg-[var(--primary)] text-white border-2 border-[var(--primary)] rounded-xl font-bold text-base sm:text-lg hover:bg-[var(--primary-dark)] transition-all shadow-lg"
               >
                 다음 시설
                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />

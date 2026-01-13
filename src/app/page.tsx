@@ -11,6 +11,7 @@ import Notice from "@/components/Notice";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import EventPopup from "@/components/EventPopup";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
 // PC 섹션 간격 컴포넌트
 const SectionSpacer = ({ className = "" }: { className?: string }) => (
@@ -40,6 +41,7 @@ export default function Home() {
       <Footer />
       <FloatingCTA />
       <EventPopup />
+      <PWAInstallPrompt />
     </main>
   );
 }

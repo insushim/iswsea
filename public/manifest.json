@@ -1,12 +1,14 @@
 {
   "name": "숲속의바다 펜션",
   "short_name": "숲속의바다",
-  "description": "태안 안면도 프리미엄 오션뷰 펜션",
+  "description": "태안 안면도의 소나무 숲과 서해 바다가 만나는 곳. 전 객실 오션뷰, 개별 스파, 바베큐장",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAFBFC",
-  "theme_color": "#4A9F6D",
+  "background_color": "#0f172a",
+  "theme_color": "#0f4c81",
   "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ko",
   "icons": [
     {
       "src": "/favicon.svg",
@@ -15,16 +17,17 @@
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["travel", "lifestyle"]
 }
