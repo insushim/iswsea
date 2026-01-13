@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: 'export', // Cloudflare Pages 정적 배포용
   images: {
     remotePatterns: [
       {
