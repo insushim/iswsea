@@ -52,6 +52,24 @@ export default function About() {
     return () => window.removeEventListener('resize', checkDesktop);
   }, []);
 
+  // 사용자 상호작용(클릭/터치/드래그) 시 자동 소리 재생
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      setIsMuted(false);
+    };
+
+    // 클릭, 터치, 드래그 이벤트 감지
+    document.addEventListener('click', handleUserInteraction, { once: true });
+    document.addEventListener('touchstart', handleUserInteraction, { once: true });
+    document.addEventListener('mousedown', handleUserInteraction, { once: true });
+
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('mousedown', handleUserInteraction);
+    };
+  }, []);
+
   const toggleMute = () => {
     setIsMuted(prev => !prev);
   };
