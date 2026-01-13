@@ -28,13 +28,12 @@ export default function Rooms() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="rooms" className="bg-[var(--background-alt)] pt-8 pb-10 lg:pt-24 lg:pb-24" ref={ref}>
+    <section id="rooms" className="bg-[var(--background-alt)] pt-8 pb-10 lg:pt-24 lg:pb-24 min-h-fit" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
           <p className="text-[var(--secondary)] dark:text-[var(--secondary-light)] text-sm sm:text-base tracking-[0.3em] uppercase mb-3 sm:mb-4">

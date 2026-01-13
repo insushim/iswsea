@@ -77,14 +77,14 @@ export default function About() {
   // 초기 로딩 시 null 상태에서는 아무것도 렌더링하지 않음
   if (isDesktop === null) {
     return (
-      <section id="about" className="bg-[var(--background)] pt-5 pb-10 lg:pt-24 lg:pb-24 min-h-[600px]" ref={ref}>
+      <section id="about" className="bg-[var(--background)] pt-5 pb-10 lg:pt-24 lg:pb-24 min-h-fit" ref={ref}>
         <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24" />
       </section>
     );
   }
 
   return (
-    <section id="about" className="bg-[var(--background)] pt-5 pb-10 lg:pt-24 lg:pb-24" ref={ref}>
+    <section id="about" className="bg-[var(--background)] pt-5 pb-10 lg:pt-24 lg:pb-24 min-h-fit" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
 
         {/* ===== 모바일 레이아웃 ===== */}
