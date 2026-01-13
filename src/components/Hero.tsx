@@ -124,15 +124,11 @@ export default function Hero() {
 
       {/* 모바일 레이아웃 - 전체 구조 */}
       <div className="absolute inset-0 z-10 flex flex-col sm:hidden bg-[#0F1419]" style={{ height: '100%', maxHeight: '100%', overflow: 'hidden' }}>
-        {/* 상단: 헤더 + SEA IN THE FOREST 로고 영역 */}
-        <div className="flex-shrink-0 pt-[72px] pb-2 text-center">
-          <span className="text-white/70 text-xs tracking-[0.3em] uppercase">
-            {pensionInfo.nameEn}
-          </span>
-        </div>
+        {/* 헤더 영역 여백 - 로고+SEA IN THE FOREST 아래 */}
+        <div className="flex-shrink-0 h-[68px]" />
 
-        {/* 사진 영역 - SEA IN THE FOREST 바로 아래 */}
-        <div className="relative flex-shrink-0 overflow-hidden mx-4 rounded-2xl" style={{ height: '38%' }}>
+        {/* 사진 영역 - 헤더 바로 아래에서 시작 */}
+        <div className="relative flex-1 overflow-hidden mx-3 rounded-xl" style={{ maxHeight: '42%' }}>
           <AnimatePresence initial={true} mode="wait">
             <motion.div
               key={`mobile-${currentSlide}`}
@@ -146,7 +142,7 @@ export default function Hero() {
                 key={`mobile-img-${currentSlide}`}
                 src={currentImage.src}
                 alt={currentImage.alt}
-                className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+                className="absolute inset-0 w-full h-full object-cover rounded-xl"
                 initial={{
                   scale: currentKenBurns.scale[0],
                   x: currentKenBurns.x[0],
@@ -166,7 +162,7 @@ export default function Hero() {
           </AnimatePresence>
 
           {/* Progress Bar - 사진 위에 오버레이 */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 z-10">
             {heroImages.map((_, index) => (
               <button
                 key={index}
@@ -175,15 +171,15 @@ export default function Hero() {
                 aria-label={`슬라이드 ${index + 1}`}
               >
                 <div
-                  className={`h-1 rounded-full transition-all duration-500 ${
+                  className={`h-[3px] rounded-full transition-all duration-500 ${
                     index === currentSlide
-                      ? "w-5 bg-white"
-                      : "w-2.5 bg-white/40"
+                      ? "w-4 bg-white"
+                      : "w-2 bg-white/40"
                   }`}
                 />
                 {index === currentSlide && (
                   <motion.div
-                    className="absolute top-0 left-0 h-1 bg-white/60 rounded-full"
+                    className="absolute top-0 left-0 h-[3px] bg-white/60 rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 7, ease: "linear" }}
@@ -195,8 +191,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 하단 컨텐츠 영역 */}
-        <div className="flex-1 flex flex-col px-5 pt-4 pb-3">
+        {/* 하단 컨텐츠 영역 - 여백 최소화 */}
+        <div className="flex-1 flex flex-col px-4 pt-3 pb-2">
           {/* 텍스트 영역 */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -208,18 +204,18 @@ export default function Hero() {
               className="text-center"
             >
               <motion.h1
-                className="text-xl font-bold text-white mb-1 leading-tight tracking-tight"
-                initial={{ opacity: 0, y: 10 }}
+                className="text-lg font-bold text-white leading-tight tracking-tight"
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
               >
                 {currentImage.title}
               </motion.h1>
               <motion.p
-                className="text-sm text-white/70 font-light"
-                initial={{ opacity: 0, y: 8 }}
+                className="text-xs text-white/60 font-light mt-0.5"
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.15 }}
+                transition={{ duration: 0.3, delay: 0.15 }}
               >
                 {currentImage.subtitle}
               </motion.p>
@@ -227,21 +223,21 @@ export default function Hero() {
           </AnimatePresence>
 
           {/* 텍스트와 버튼 사이 여백 */}
-          <div className="flex-1 min-h-[16px]" />
+          <div className="h-3" />
 
-          {/* CTA Buttons - 3줄 배치 */}
+          {/* CTA Buttons - 3줄 배치, 컴팩트 */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="w-full flex flex-col gap-2"
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="w-full flex flex-col gap-1.5"
           >
             {/* 첫째 줄: 네이버예약 */}
             <motion.a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#03C75A] text-white font-semibold text-sm rounded-xl"
+              className="w-full flex items-center justify-center gap-2 h-[42px] bg-[#03C75A] text-white font-semibold text-sm rounded-lg"
               whileTap={{ scale: 0.97 }}
             >
               <Calendar className="w-4 h-4" />
@@ -252,7 +248,7 @@ export default function Hero() {
               href={pensionInfo.yapenBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#FF6B35] text-white font-semibold text-sm rounded-xl"
+              className="w-full flex items-center justify-center gap-2 h-[42px] bg-[#FF6B35] text-white font-semibold text-sm rounded-lg"
               whileTap={{ scale: 0.97 }}
             >
               <Clock className="w-4 h-4" />
@@ -261,7 +257,7 @@ export default function Hero() {
             {/* 셋째 줄: 객실보기 */}
             <motion.a
               href="#rooms"
-              className="w-full flex items-center justify-center gap-2 h-[46px] bg-white/10 border border-white/30 text-white font-semibold text-sm rounded-xl"
+              className="w-full flex items-center justify-center gap-2 h-[42px] bg-white/10 border border-white/30 text-white font-semibold text-sm rounded-lg"
               whileTap={{ scale: 0.97 }}
             >
               <Eye className="w-4 h-4" />
@@ -270,21 +266,20 @@ export default function Hero() {
           </motion.div>
 
           {/* 버튼과 스크롤 사이 여백 */}
-          <div className="flex-1 min-h-[12px]" />
+          <div className="flex-1 min-h-[8px]" />
 
           {/* 하단: Scroll Indicator */}
-          <div className="flex flex-col items-center pb-1">
+          <div className="flex flex-col items-center">
             <motion.a
               href="#about"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1, y: [0, 3, 0] }}
+              animate={{ opacity: 1, y: [0, 2, 0] }}
               transition={{
                 opacity: { delay: 0.8 },
                 y: { duration: 1.5, repeat: Infinity }
               }}
-              className="flex flex-col items-center text-white/40"
+              className="flex flex-col items-center text-white/30"
             >
-              <span className="text-[10px] tracking-[0.15em] uppercase mb-0.5">Scroll</span>
               <ChevronDown className="w-4 h-4" />
             </motion.a>
           </div>
