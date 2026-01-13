@@ -122,17 +122,17 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
-      {/* 모바일 레이아웃 - 전체 구조 */}
+      {/* 모바일 레이아웃 - 전체 구조 (viewportHeight 고정으로 여백 문제 해결) */}
       {isMobile && viewportHeight && (
         <div
-          className="absolute inset-0 z-10 flex flex-col sm:hidden bg-[#0F1419]"
-          style={{ height: `${viewportHeight}px`, maxHeight: `${viewportHeight}px`, overflow: 'hidden' }}
+          className="absolute top-0 left-0 right-0 z-10 flex flex-col sm:hidden bg-[#0F1419]"
+          style={{ height: `${viewportHeight}px`, minHeight: `${viewportHeight}px`, maxHeight: `${viewportHeight}px`, overflow: 'hidden' }}
         >
-          {/* 헤더 영역 여백 - 사진 1mm 더 아래로 */}
-          <div style={{ height: '80px', flexShrink: 0 }} />
+          {/* 헤더 영역 여백 - 사진 더 아래로 */}
+          <div style={{ height: '88px', flexShrink: 0 }} />
 
           {/* 사진 영역 - 직각 모서리 */}
-          <div className="relative overflow-hidden" style={{ height: '30%', flexShrink: 0 }}>
+          <div className="relative overflow-hidden" style={{ height: '28%', flexShrink: 0 }}>
             <AnimatePresence initial={true} mode="wait">
               <motion.div
                 key={`mobile-${currentSlide}`}
@@ -167,12 +167,11 @@ export default function Hero() {
           </div>
 
           {/* 사진과 Progress Bar 사이 여백 */}
-          <div style={{ height: '12px', flexShrink: 0 }} />
+          <div style={{ height: '16px', flexShrink: 0 }} />
 
-          {/* Progress Bar + 텍스트 영역 */}
+          {/* Progress Bar */}
           <div style={{ flexShrink: 0 }} className="px-4">
-            {/* Progress Bar */}
-            <div className="flex items-center justify-center gap-1.5 mb-2">
+            <div className="flex items-center justify-center gap-1.5">
               {heroImages.map((_, index) => (
                 <button
                   key={index}
@@ -199,8 +198,13 @@ export default function Hero() {
                 </button>
               ))}
             </div>
+          </div>
 
-            {/* 텍스트 영역 */}
+          {/* Progress Bar와 텍스트 사이 여백 */}
+          <div style={{ height: '12px', flexShrink: 0 }} />
+
+          {/* 텍스트 영역 */}
+          <div style={{ flexShrink: 0 }} className="px-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
@@ -210,10 +214,10 @@ export default function Hero() {
                 transition={{ duration: 0.5 }}
                 className="text-center"
               >
-                <h1 className="text-lg font-bold text-white leading-tight tracking-tight">
+                <h1 className="text-xl font-bold text-white leading-tight tracking-tight">
                   {currentImage.title}
                 </h1>
-                <p className="text-xs text-white/60 font-light mt-1">
+                <p className="text-sm text-white/60 font-light mt-1.5">
                   {currentImage.subtitle}
                 </p>
               </motion.div>
@@ -221,15 +225,15 @@ export default function Hero() {
           </div>
 
           {/* 텍스트와 버튼 사이 여백 */}
-          <div style={{ height: '16px', flexShrink: 0 }} />
+          <div style={{ height: '20px', flexShrink: 0 }} />
 
           {/* CTA Buttons - 3줄 */}
-          <div style={{ flexShrink: 0 }} className="px-4 flex flex-col gap-2.5">
+          <div style={{ flexShrink: 0 }} className="px-4 flex flex-col gap-3">
             <a
               href={pensionInfo.naverBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#03C75A] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
+              className="w-full flex items-center justify-center gap-2 h-[44px] bg-[#03C75A] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
             >
               <Calendar className="w-4 h-4" />
               <span>네이버 예약</span>
@@ -238,28 +242,28 @@ export default function Hero() {
               href={pensionInfo.yapenBookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 h-[46px] bg-[#FF6B35] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
+              className="w-full flex items-center justify-center gap-2 h-[44px] bg-[#FF6B35] text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
             >
               <Clock className="w-4 h-4" />
               <span>실시간 예약</span>
             </a>
             <a
               href="#rooms"
-              className="w-full flex items-center justify-center gap-2 h-[46px] bg-white/10 border border-white/30 text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
+              className="w-full flex items-center justify-center gap-2 h-[44px] bg-white/10 border border-white/30 text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-transform"
             >
               <Eye className="w-4 h-4" />
               <span>객실 보기</span>
             </a>
           </div>
 
-          {/* 남은 공간 채우고 Scroll을 맨 아래에 배치 */}
-          <div className="flex-1" />
+          {/* 남은 공간 - Scroll을 맨 아래에 배치 */}
+          <div className="flex-1 min-h-[20px]" />
 
           {/* 하단: Scroll Indicator - 맨 아래 고정 */}
-          <div style={{ height: '50px', flexShrink: 0 }} className="flex flex-col items-center justify-center">
+          <div style={{ height: '45px', flexShrink: 0 }} className="flex flex-col items-center justify-center pb-2">
             <a
               href="#about"
-              className="flex flex-col items-center gap-1 text-white/60"
+              className="flex flex-col items-center gap-0.5 text-white/60"
             >
               <motion.span
                 className="text-[10px] tracking-[0.2em] uppercase font-light"
@@ -269,7 +273,7 @@ export default function Hero() {
                 Scroll
               </motion.span>
               <motion.div
-                animate={{ y: [0, 4, 0] }}
+                animate={{ y: [0, 3, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
                 <ChevronDown className="w-4 h-4" />
