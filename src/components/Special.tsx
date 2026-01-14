@@ -59,6 +59,7 @@ export default function Special() {
     "바베큐 개별테라스": "BBQ",
     "수영장과 모래해변": "수영장",
     "야외카페 & 산책로": "카페",
+    "바다꽃정원": "정원",
   };
 
   return (
@@ -82,9 +83,9 @@ export default function Special() {
           </p>
         </motion.div>
 
-        {/* Mobile: Tab Navigation - 6개 그리드 1줄 */}
+        {/* Mobile: Tab Navigation - 7개 그리드 1줄 */}
         <div className="lg:hidden mb-4">
-          <div className="grid grid-cols-6 gap-1.5">
+          <div className="grid grid-cols-7 gap-1">
             {specials.map((special, index) => {
               const SpecialIcon = iconMap[special.icon];
               const isActive = index === activeIndex;
@@ -93,27 +94,27 @@ export default function Special() {
                 <button
                   key={special.id}
                   onClick={() => handleSelectSpecial(index)}
-                  className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all ${
+                  className={`flex flex-col items-center justify-center p-1.5 rounded-lg transition-all ${
                     isActive
                       ? "bg-[var(--primary)] text-white shadow-lg"
                       : "bg-[#1a2332] border border-[#2a3a4a]"
                   }`}
                 >
                   <div
-                    className={`w-7 h-7 rounded-md flex items-center justify-center mb-1 ${
+                    className={`w-6 h-6 rounded-md flex items-center justify-center mb-0.5 ${
                       isActive ? "bg-white/20" : "bg-[#0d1520]"
                     }`}
                   >
                     {SpecialIcon && (
                       <SpecialIcon
-                        className={`w-3.5 h-3.5 ${
+                        className={`w-3 h-3 ${
                           isActive ? "text-white" : "text-[var(--primary)]"
                         }`}
                       />
                     )}
                   </div>
                   <span
-                    className={`text-[9px] font-bold text-center leading-tight whitespace-nowrap ${
+                    className={`text-[8px] font-bold text-center leading-tight whitespace-nowrap ${
                       isActive ? "text-white" : "text-[var(--foreground)]"
                     }`}
                   >
@@ -141,7 +142,7 @@ export default function Special() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.4 }}
-                className="relative rounded-xl sm:rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-auto shadow-2xl flex-1"
+                className="relative rounded-xl sm:rounded-3xl overflow-hidden aspect-[5/4] lg:aspect-auto shadow-2xl flex-1"
                 style={{ minHeight: 'auto' }}
               >
                 <div

@@ -128,12 +128,16 @@ export default function About() {
               </button>
             </div>
 
-            {/* 하단 사진 4장 */}
+            {/* 하단 사진 8장 (2줄) */}
             <div className="grid grid-cols-4 gap-2 mb-3">
               <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/main/1.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
               <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/special2/3.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
               <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/room1/4.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
               <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/main/4.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/special1/1.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/main/5.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/special1/2.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden aspect-square" style={{ backgroundImage: `url(/images/gallery/room1/1.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
             </div>
 
             {/* 특별한 경험 - 컴팩트 3열 */}
