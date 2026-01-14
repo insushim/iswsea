@@ -51,8 +51,18 @@ export default function Special() {
     );
   };
 
+  // 모바일용 짧은 이름
+  const shortNames: Record<string, string> = {
+    "바다전망": "바다",
+    "SPA": "스파",
+    "갯벌체험": "갯벌",
+    "바베큐 개별테라스": "BBQ",
+    "수영장과 모래해변": "수영장",
+    "야외카페 & 산책로": "카페",
+  };
+
   return (
-    <section id="special" className="bg-[#0F1419] overflow-hidden pt-4 pb-6 lg:pt-12 lg:pb-12" ref={ref}>
+    <section id="special" className="bg-[#0F1419] overflow-hidden pt-5 pb-8 lg:pt-12 lg:pb-12" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
         {/* Section Header - 모바일 컴팩트 */}
         <motion.div
@@ -72,9 +82,9 @@ export default function Special() {
           </p>
         </motion.div>
 
-        {/* Mobile: Tab Navigation - 6개 그리드로 모두 표시 */}
-        <div className="lg:hidden mb-3">
-          <div className="grid grid-cols-6 gap-1">
+        {/* Mobile: Tab Navigation - 6개 그리드 1줄 */}
+        <div className="lg:hidden mb-4">
+          <div className="grid grid-cols-6 gap-1.5">
             {specials.map((special, index) => {
               const SpecialIcon = iconMap[special.icon];
               const isActive = index === activeIndex;
@@ -83,31 +93,31 @@ export default function Special() {
                 <button
                   key={special.id}
                   onClick={() => handleSelectSpecial(index)}
-                  className={`flex flex-col items-center justify-center p-1.5 rounded-lg transition-all ${
+                  className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all ${
                     isActive
                       ? "bg-[var(--primary)] text-white shadow-lg"
                       : "bg-[#1a2332] border border-[#2a3a4a]"
                   }`}
                 >
                   <div
-                    className={`w-6 h-6 rounded-md flex items-center justify-center mb-0.5 ${
+                    className={`w-7 h-7 rounded-md flex items-center justify-center mb-1 ${
                       isActive ? "bg-white/20" : "bg-[#0d1520]"
                     }`}
                   >
                     {SpecialIcon && (
                       <SpecialIcon
-                        className={`w-3 h-3 ${
+                        className={`w-3.5 h-3.5 ${
                           isActive ? "text-white" : "text-[var(--primary)]"
                         }`}
                       />
                     )}
                   </div>
                   <span
-                    className={`text-[8px] font-bold text-center leading-tight ${
+                    className={`text-[9px] font-bold text-center leading-tight whitespace-nowrap ${
                       isActive ? "text-white" : "text-[var(--foreground)]"
                     }`}
                   >
-                    {special.name}
+                    {shortNames[special.name] || special.name}
                   </span>
                 </button>
               );
@@ -116,7 +126,7 @@ export default function Special() {
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-12 gap-3 lg:gap-8">
+        <div className="grid lg:grid-cols-12 gap-4 lg:gap-8">
           {/* Left - Main Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -131,7 +141,7 @@ export default function Special() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.4 }}
-                className="relative rounded-xl sm:rounded-3xl overflow-hidden aspect-[16/10] lg:aspect-auto shadow-2xl flex-1"
+                className="relative rounded-xl sm:rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-auto shadow-2xl flex-1"
                 style={{ minHeight: 'auto' }}
               >
                 <div
@@ -182,13 +192,13 @@ export default function Special() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Thumbnail Strip - 모바일 컴팩트 */}
-            <div className="flex gap-1.5 mt-2 overflow-x-auto pb-1 scrollbar-hide lg:hidden">
+            {/* Thumbnail Strip - 모바일 */}
+            <div className="flex gap-2 mt-3 overflow-x-auto pb-1 scrollbar-hide lg:hidden">
               {activeSpecial.images.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setImageIndex(idx)}
-                  className={`flex-shrink-0 w-10 h-10 rounded-md overflow-hidden border-2 transition-all ${
+                  className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
                     idx === imageIndex
                       ? "border-[var(--primary)] shadow-lg"
                       : "border-transparent opacity-60"
@@ -210,23 +220,23 @@ export default function Special() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-5 flex flex-col"
           >
-            {/* Icon & Description - Mobile: Compact */}
-            <div className="mb-2 lg:mb-4">
-              <div className="flex items-center gap-2 sm:gap-4 mb-1 sm:mb-4">
-                <div className="w-8 h-8 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg sm:rounded-2xl bg-[var(--primary)] flex items-center justify-center shadow-xl flex-shrink-0">
-                  {Icon && <Icon className="w-4 h-4 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />}
+            {/* Icon & Description */}
+            <div className="mb-3 lg:mb-4">
+              <div className="flex items-center gap-3 sm:gap-4 mb-2 sm:mb-4">
+                <div className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-[var(--primary)] flex items-center justify-center shadow-xl flex-shrink-0">
+                  {Icon && <Icon className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[var(--secondary)] text-[10px] sm:text-sm font-medium tracking-wider">
+                  <p className="text-[var(--secondary)] text-xs sm:text-sm font-medium tracking-wider">
                     {activeSpecial.nameEn}
                   </p>
-                  <h3 className="text-base sm:text-2xl lg:text-2xl font-bold text-[var(--foreground)] truncate">
+                  <h3 className="text-lg sm:text-2xl lg:text-2xl font-bold text-[var(--foreground)] truncate">
                     {activeSpecial.name}
                   </h3>
                 </div>
               </div>
 
-              <p className="text-[var(--foreground-muted)] text-xs sm:text-base lg:text-base leading-relaxed line-clamp-2 sm:line-clamp-none">
+              <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                 {activeSpecial.description}
               </p>
             </div>
@@ -302,15 +312,15 @@ export default function Special() {
               </div>
             </div>
 
-            {/* Next Button - 모바일 컴팩트 */}
-            <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[#2a3a4a] lg:hidden">
+            {/* Next Button - 모바일 */}
+            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#2a3a4a] lg:hidden">
               <button
                 onClick={() =>
                   handleSelectSpecial(
                     activeIndex === 0 ? specials.length - 1 : activeIndex - 1
                   )
                 }
-                className="flex items-center justify-center gap-1 py-2 px-3 bg-[#1a2332] text-white border border-[#2a3a4a] rounded-lg font-medium text-xs transition-all"
+                className="flex items-center justify-center gap-1 py-2.5 px-4 bg-[#1a2332] text-white border border-[#2a3a4a] rounded-lg font-medium text-sm transition-all"
               >
                 <ChevronLeft className="w-4 h-4" />
                 이전
@@ -321,7 +331,7 @@ export default function Special() {
                     activeIndex === specials.length - 1 ? 0 : activeIndex + 1
                   )
                 }
-                className="flex-1 flex items-center justify-center gap-1 py-2 bg-[var(--primary)] text-white rounded-lg font-medium text-xs transition-all"
+                className="flex-1 flex items-center justify-center gap-1 py-2.5 bg-[var(--primary)] text-white rounded-lg font-medium text-sm transition-all"
               >
                 다음 시설
                 <ChevronRight className="w-4 h-4" />
