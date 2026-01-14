@@ -90,12 +90,13 @@ export default function About() {
         {/* ===== 모바일 레이아웃 ===== */}
         {!isDesktop && (
           <div>
-            <div className="mb-8">
-              <div className="flex items-center gap-4 mb-4">
+            <div className="mb-8 text-center">
+              <div className="flex items-center justify-center gap-4 mb-4">
                 <div className="w-10 h-[2px] bg-[#4A9F6D]" />
                 <span className="text-[#4A90A4] text-sm tracking-[0.2em] uppercase font-medium">
                   {pensionInfo.nameEn}
                 </span>
+                <div className="w-10 h-[2px] bg-[#4A9F6D]" />
               </div>
               <h2 className="text-3xl font-bold text-[var(--foreground)] mb-4 leading-tight font-display">
                 숲속의바다 <span className="text-[#4A9F6D]">펜션</span>
