@@ -25,23 +25,40 @@ export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
 
   // 실제 뷰포트 높이 계산 (모바일 브라우저 주소창 고려)
+  // 초기값만 저장하고, 스크롤로 인한 주소창 변화에는 반응하지 않음
   useEffect(() => {
-    const updateHeight = () => {
+    const isMobileDevice = window.innerWidth < 640;
+    setIsMobile(isMobileDevice);
+
+    // 모바일에서는 초기 높이만 저장 (스크롤 시 주소창 변화로 인한 여백 문제 방지)
+    if (viewportHeight === null) {
       setViewportHeight(window.innerHeight);
+    }
+
+    // orientationchange에서만 높이 업데이트 (화면 회전 시)
+    const handleOrientationChange = () => {
+      setTimeout(() => {
+        setViewportHeight(window.innerHeight);
+        setIsMobile(window.innerWidth < 640);
+      }, 100);
+    };
+
+    // PC에서는 resize도 처리
+    const handleResize = () => {
+      if (window.innerWidth >= 640) {
+        setViewportHeight(window.innerHeight);
+      }
       setIsMobile(window.innerWidth < 640);
     };
 
-    updateHeight();
-
-    // resize와 orientationchange만 passive하게 처리
-    window.addEventListener('resize', updateHeight, { passive: true });
-    window.addEventListener('orientationchange', updateHeight, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('orientationchange', handleOrientationChange, { passive: true });
 
     return () => {
-      window.removeEventListener('resize', updateHeight);
-      window.removeEventListener('orientationchange', updateHeight);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleOrientationChange);
     };
-  }, []);
+  }, [viewportHeight]);
 
 
   useEffect(() => {
@@ -122,14 +139,14 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-[1] hidden sm:block" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1] hidden sm:block" />
 
-      {/* 모바일 레이아웃 - 전체 구조 (viewportHeight 고정으로 여백 문제 해결) */}
+      {/* 모바일 레이아웃 */}
       {isMobile && viewportHeight && (
         <div
           className="absolute top-0 left-0 right-0 z-10 flex flex-col sm:hidden bg-[#0F1419]"
-          style={{ height: `${viewportHeight}px`, minHeight: `${viewportHeight}px`, maxHeight: `${viewportHeight}px`, overflow: 'hidden' }}
+          style={{ height: `${viewportHeight}px` }}
         >
-          {/* 헤더 영역 여백 - 사진 더 아래로 */}
-          <div style={{ height: '88px', flexShrink: 0 }} />
+          {/* 헤더 영역 여백 */}
+          <div style={{ height: '92px', flexShrink: 0 }} />
 
           {/* 사진 영역 - 직각 모서리 */}
           <div className="relative overflow-hidden" style={{ height: '28%', flexShrink: 0 }}>
@@ -224,8 +241,8 @@ export default function Hero() {
             </AnimatePresence>
           </div>
 
-          {/* 텍스트와 버튼 사이 여백 */}
-          <div style={{ height: '20px', flexShrink: 0 }} />
+          {/* 텍스트와 버튼 사이 여백 - 더 넓게 */}
+          <div style={{ height: '32px', flexShrink: 0 }} />
 
           {/* CTA Buttons - 3줄 */}
           <div style={{ flexShrink: 0 }} className="px-4 flex flex-col gap-3">
@@ -257,10 +274,10 @@ export default function Hero() {
           </div>
 
           {/* 남은 공간 - Scroll을 맨 아래에 배치 */}
-          <div className="flex-1 min-h-[20px]" />
+          <div className="flex-1" />
 
           {/* 하단: Scroll Indicator - 맨 아래 고정 */}
-          <div style={{ height: '45px', flexShrink: 0 }} className="flex flex-col items-center justify-center pb-2">
+          <div style={{ height: '50px', flexShrink: 0 }} className="flex flex-col items-center justify-center pb-3">
             <a
               href="#about"
               className="flex flex-col items-center gap-0.5 text-white/60"

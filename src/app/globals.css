@@ -99,20 +99,22 @@ html, body {
 /* 모바일 오버스크롤 바운스 완전 방지 + 스크롤바 밀림 방지 */
 @media (max-width: 640px) {
   html {
-    overflow-y: scroll; /* 항상 스크롤바 공간 확보 */
+    overflow-y: auto;
     overflow-x: hidden;
-    height: 100%;
+    height: auto;
+    overscroll-behavior: none;
   }
 
   body {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: none;
+    overscroll-behavior: none;
   }
 
-  /* 모바일에서 스크롤바 숨기기 (공간은 유지) */
+  /* 모바일에서 스크롤바 숨기기 */
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent;

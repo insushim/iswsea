@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import {
   Waves,
   Flame,
@@ -24,19 +22,11 @@ const featureIcons: Record<string, React.ElementType> = {
 };
 
 export default function Rooms() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="rooms" className="bg-[var(--background-alt)] pt-8 pb-10 lg:pt-24 lg:pb-24 min-h-fit" ref={ref}>
+    <section id="rooms" className="bg-[var(--background-alt)] pt-8 pb-10 lg:pt-24 lg:pb-24 min-h-fit">
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
-        >
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <p className="text-[var(--secondary)] dark:text-[var(--secondary-light)] text-sm sm:text-base tracking-[0.3em] uppercase mb-3 sm:mb-4">
             ROOMS
           </p>
@@ -48,21 +38,18 @@ export default function Rooms() {
             <span className="sm:hidden">모든 객실에서 아름다운 오션뷰와<br />개별 바베큐 테라스를 즐기세요</span>
             <span className="hidden sm:inline">숲속의바다 펜션의 모든 객실은 아름다운 오션뷰를 자랑합니다.<br />객실마다 개별적인 바베큐 테라스를 가지고 있습니다.</span>
           </p>
-        </motion.div>
+        </div>
 
         {/* Rooms Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 overflow-hidden">
-          {rooms.map((room, index) => (
-            <motion.div
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 overflow-hidden">
+          {rooms.map((room) => (
+            <div
               key={room.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="relative overflow-hidden rounded-xl bg-[var(--card)] shadow-lg hover:shadow-2xl transition-all duration-500">
+              <div className="relative overflow-hidden rounded-lg sm:rounded-xl bg-[var(--card)] shadow-lg hover:shadow-2xl transition-all duration-500">
                 {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] sm:aspect-[4/3] overflow-hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                     style={{ backgroundImage: `url(${room.mainImage})` }}
@@ -83,70 +70,72 @@ export default function Rooms() {
                   </div>
 
                   {/* Image count badge */}
-                  <div className="absolute top-3 right-3 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-                    사진 {room.images.length}장
+                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-white text-[10px] sm:text-xs font-medium">
+                    <span className="sm:hidden">{room.images.length}장</span>
+                    <span className="hidden sm:inline">사진 {room.images.length}장</span>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold text-[var(--foreground)]">
+                <div className="p-3 sm:p-6">
+                  <div className="flex items-center justify-between mb-1 sm:mb-2">
+                    <h3 className="text-sm sm:text-xl font-bold text-[var(--foreground)]">
                       {room.name}
                     </h3>
-                    <span className="text-sm text-[var(--foreground-muted)]">
+                    <span className="hidden sm:inline text-sm text-[var(--foreground-muted)]">
                       {room.nameEn}
                     </span>
                   </div>
 
                   {/* Size & Capacity */}
-                  <div className="flex items-center gap-4 text-sm text-[var(--foreground-muted)] mb-3">
-                    <div className="flex items-center gap-1">
-                      <Ruler className="w-4 h-4" />
+                  <div className="flex items-center gap-2 sm:gap-4 text-[10px] sm:text-sm text-[var(--foreground-muted)] mb-2 sm:mb-3">
+                    <div className="flex items-center gap-0.5 sm:gap-1">
+                      <Ruler className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{room.size}</span>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      <span>기준 {room.capacity.standard}인 / 최대 {room.capacity.max}인</span>
+                    <div className="flex items-center gap-0.5 sm:gap-1">
+                      <Users className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="hidden sm:inline">기준 {room.capacity.standard}인 / 최대 {room.capacity.max}인</span>
+                      <span className="sm:hidden">{room.capacity.standard}~{room.capacity.max}인</span>
                     </div>
                   </div>
 
                   {/* 요금표 */}
                   {room.prices && (
-                    <div className="mb-3 rounded-lg overflow-hidden border border-[var(--border)]">
+                    <div className="mb-2 sm:mb-3 rounded-md sm:rounded-lg overflow-hidden border border-[var(--border)]">
                       {/* 요금 헤더 */}
-                      <div className="grid grid-cols-4 bg-[var(--background)] text-center text-[9px]">
-                        <div className="py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">
+                      <div className="grid grid-cols-4 bg-[var(--background)] text-center text-[7px] sm:text-[9px]">
+                        <div className="py-1 sm:py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">
                           <div>주중</div>
-                          <div className="text-[8px] opacity-70">(월~목)</div>
+                          <div className="hidden sm:block text-[8px] opacity-70">(월~목)</div>
                         </div>
-                        <div className="py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">금요일</div>
-                        <div className="py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">
+                        <div className="py-1 sm:py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">금</div>
+                        <div className="py-1 sm:py-1.5 px-0.5 border-r border-[var(--border)] text-[var(--foreground-muted)]">
                           <div>주말</div>
-                          <div className="text-[8px] opacity-70">(토,공휴일전)</div>
+                          <div className="hidden sm:block text-[8px] opacity-70">(토,공휴일전)</div>
                         </div>
-                        <div className="py-1.5 px-0.5 text-[var(--foreground-muted)]">일요일</div>
+                        <div className="py-1 sm:py-1.5 px-0.5 text-[var(--foreground-muted)]">일</div>
                       </div>
                       {/* 요금 데이터 */}
-                      <div className="grid grid-cols-4 bg-[var(--card)] text-center text-[10px]">
-                        <div className="py-2 px-0.5 border-r border-[var(--border)] text-[var(--primary)] font-bold">
+                      <div className="grid grid-cols-4 bg-[var(--card)] text-center text-[8px] sm:text-[10px]">
+                        <div className="py-1.5 sm:py-2 px-0.5 border-r border-[var(--border)] text-[var(--primary)] font-bold">
                           {(room.prices.weekday / 10000).toFixed(0)}만
                         </div>
-                        <div className="py-2 px-0.5 border-r border-[var(--border)] text-[var(--secondary)] font-bold">
+                        <div className="py-1.5 sm:py-2 px-0.5 border-r border-[var(--border)] text-[var(--secondary)] font-bold">
                           {(room.prices.friday / 10000).toFixed(0)}만
                         </div>
-                        <div className="py-2 px-0.5 border-r border-[var(--border)] text-[#F5B041] font-bold">
+                        <div className="py-1.5 sm:py-2 px-0.5 border-r border-[var(--border)] text-[#F5B041] font-bold">
                           {(room.prices.weekend / 10000).toFixed(0)}만
                         </div>
-                        <div className="py-2 px-0.5 text-[var(--primary)] font-bold">
+                        <div className="py-1.5 sm:py-2 px-0.5 text-[var(--primary)] font-bold">
                           {(room.prices.sunday / 10000).toFixed(0)}만
                         </div>
                       </div>
                     </div>
                   )}
 
-                  {/* Features */}
-                  <div className="flex flex-wrap gap-2">
+                  {/* Features - 모바일에서는 숨김 */}
+                  <div className="hidden sm:flex flex-wrap gap-2">
                     {room.features.slice(0, 3).map((feature) => {
                       const Icon = featureIcons[feature];
                       return (
@@ -165,25 +154,21 @@ export default function Rooms() {
                   <Link
                     href={`/room/${room.id}`}
                     target="_blank"
-                    className="mt-4 flex items-center justify-center gap-2 w-full py-3 bg-[var(--primary)]/10 hover:bg-[var(--primary)] text-[var(--primary)] hover:text-white rounded-lg font-medium transition-all duration-200 border border-[var(--primary)]/30 hover:border-[var(--primary)]"
+                    className="mt-2 sm:mt-4 flex items-center justify-center gap-1 sm:gap-2 w-full py-2 sm:py-3 bg-[var(--primary)]/10 hover:bg-[var(--primary)] text-[var(--primary)] hover:text-white rounded-md sm:rounded-lg font-medium text-xs sm:text-base transition-all duration-200 border border-[var(--primary)]/30 hover:border-[var(--primary)]"
                   >
-                    <Eye className="w-4 h-4" />
-                    <span>객실 상세보기</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="sm:hidden">상세보기</span>
+                    <span className="hidden sm:inline">객실 상세보기</span>
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-20 mb-4 w-full flex flex-col sm:flex-row justify-center items-center gap-4 px-6"
-        >
+        <div className="mt-20 mb-4 w-full flex flex-col sm:flex-row justify-center items-center gap-4 px-6">
           <a
             href={pensionInfo.naverBookingUrl}
             target="_blank"
@@ -202,7 +187,7 @@ export default function Rooms() {
             <Clock className="w-5 h-5" />
             <span>실시간 예약하기</span>
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

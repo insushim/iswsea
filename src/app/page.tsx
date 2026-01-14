@@ -13,9 +13,9 @@ import FloatingCTA from "@/components/FloatingCTA";
 import EventPopup from "@/components/EventPopup";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
-// PC 섹션 간격 컴포넌트
+// 섹션 간격 컴포넌트 (모바일 + PC)
 const SectionSpacer = ({ className = "" }: { className?: string }) => (
-  <div className={`hidden lg:block h-20 ${className}`} />
+  <div className={`h-8 sm:h-12 lg:h-20 ${className}`} />
 );
 
 export default function Home() {
