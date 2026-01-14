@@ -52,75 +52,71 @@ export default function Special() {
   };
 
   return (
-    <section id="special" className="bg-[#0F1419] overflow-hidden pt-8 pb-14 lg:pt-12 lg:pb-12" ref={ref}>
+    <section id="special" className="bg-[#0F1419] overflow-hidden pt-4 pb-6 lg:pt-12 lg:pb-12" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
-        {/* Section Header */}
+        {/* Section Header - 모바일 컴팩트 */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 lg:mb-8"
+          className="text-center mb-3 lg:mb-8"
         >
-          <p className="text-[var(--secondary)] text-sm sm:text-base tracking-[0.3em] uppercase mb-2 sm:mb-3 font-medium">
+          <p className="text-[var(--secondary)] text-xs sm:text-base tracking-[0.2em] uppercase mb-1 sm:mb-3 font-medium">
             SPECIAL FACILITIES
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--foreground)] mb-3 sm:mb-4 font-display">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[var(--foreground)] mb-1 sm:mb-4 font-display">
             특별한 시설
           </h2>
-          <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-lg mx-auto px-2 text-center">
-            <span className="sm:hidden">수영장, 개별 스파, 바베큐장<br />갯벌체험, 4계절 정원까지</span>
-            <span className="hidden sm:inline">바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장, 갯벌체험, 4계절 모두 꽃이 피는 정원까지</span>
+          <p className="text-[var(--foreground-muted)] text-xs sm:text-base lg:text-lg mx-auto px-2 text-center hidden sm:block">
+            바다가 보이는 수영장부터 전 객실 개별 스파와 바베큐장, 갯벌체험, 4계절 모두 꽃이 피는 정원까지
           </p>
         </motion.div>
 
-        {/* Mobile: Tab Navigation First */}
-        <div className="lg:hidden mb-6">
-          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
-            <div className="flex gap-2 pb-2" style={{ width: 'max-content' }}>
-              {specials.map((special, index) => {
-                const SpecialIcon = iconMap[special.icon];
-                const isActive = index === activeIndex;
+        {/* Mobile: Tab Navigation - 6개 그리드로 모두 표시 */}
+        <div className="lg:hidden mb-3">
+          <div className="grid grid-cols-6 gap-1">
+            {specials.map((special, index) => {
+              const SpecialIcon = iconMap[special.icon];
+              const isActive = index === activeIndex;
 
-                return (
-                  <button
-                    key={special.id}
-                    onClick={() => handleSelectSpecial(index)}
-                    className={`flex flex-col items-center justify-center p-3 rounded-xl transition-all ${
-                      isActive
-                        ? "bg-[var(--primary)] text-white shadow-lg"
-                        : "bg-[#1a2332] border border-[#2a3a4a]"
+              return (
+                <button
+                  key={special.id}
+                  onClick={() => handleSelectSpecial(index)}
+                  className={`flex flex-col items-center justify-center p-1.5 rounded-lg transition-all ${
+                    isActive
+                      ? "bg-[var(--primary)] text-white shadow-lg"
+                      : "bg-[#1a2332] border border-[#2a3a4a]"
+                  }`}
+                >
+                  <div
+                    className={`w-6 h-6 rounded-md flex items-center justify-center mb-0.5 ${
+                      isActive ? "bg-white/20" : "bg-[#0d1520]"
                     }`}
-                    style={{ width: '80px', minWidth: '80px' }}
                   >
-                    <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center mb-1.5 ${
-                        isActive ? "bg-white/20" : "bg-[#0d1520]"
-                      }`}
-                    >
-                      {SpecialIcon && (
-                        <SpecialIcon
-                          className={`w-4 h-4 ${
-                            isActive ? "text-white" : "text-[var(--primary)]"
-                          }`}
-                        />
-                      )}
-                    </div>
-                    <span
-                      className={`text-[10px] font-bold text-center leading-tight ${
-                        isActive ? "text-white" : "text-[var(--foreground)]"
-                      }`}
-                    >
-                      {special.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+                    {SpecialIcon && (
+                      <SpecialIcon
+                        className={`w-3 h-3 ${
+                          isActive ? "text-white" : "text-[var(--primary)]"
+                        }`}
+                      />
+                    )}
+                  </div>
+                  <span
+                    className={`text-[8px] font-bold text-center leading-tight ${
+                      isActive ? "text-white" : "text-[var(--foreground)]"
+                    }`}
+                  >
+                    {special.name}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
+        <div className="grid lg:grid-cols-12 gap-3 lg:gap-8">
           {/* Left - Main Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -135,8 +131,8 @@ export default function Special() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.4 }}
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-auto shadow-2xl flex-1"
-                style={{ minHeight: '400px' }}
+                className="relative rounded-xl sm:rounded-3xl overflow-hidden aspect-[16/10] lg:aspect-auto shadow-2xl flex-1"
+                style={{ minHeight: 'auto' }}
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -186,16 +182,16 @@ export default function Special() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Thumbnail Strip - 모바일만 */}
-            <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto pb-2 scrollbar-hide lg:hidden">
+            {/* Thumbnail Strip - 모바일 컴팩트 */}
+            <div className="flex gap-1.5 mt-2 overflow-x-auto pb-1 scrollbar-hide lg:hidden">
               {activeSpecial.images.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setImageIndex(idx)}
-                  className={`flex-shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all ${
+                  className={`flex-shrink-0 w-10 h-10 rounded-md overflow-hidden border-2 transition-all ${
                     idx === imageIndex
-                      ? "border-[var(--primary)] shadow-lg scale-105"
-                      : "border-transparent opacity-60 hover:opacity-100"
+                      ? "border-[var(--primary)] shadow-lg"
+                      : "border-transparent opacity-60"
                   }`}
                 >
                   <div
@@ -204,22 +200,6 @@ export default function Special() {
                   />
                 </button>
               ))}
-            </div>
-
-            {/* Navigation Buttons - 모바일만 */}
-            <div className="flex justify-center gap-3 sm:gap-4 mt-4 sm:mt-6 lg:hidden">
-              <button
-                onClick={prevImage}
-                className="p-3 sm:p-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white transition-all hover:scale-110 shadow-lg"
-              >
-                <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-              </button>
-              <button
-                onClick={nextImage}
-                className="p-3 sm:p-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white transition-all hover:scale-110 shadow-lg"
-              >
-                <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-              </button>
             </div>
           </motion.div>
 
@@ -231,22 +211,22 @@ export default function Special() {
             className="lg:col-span-5 flex flex-col"
           >
             {/* Icon & Description - Mobile: Compact */}
-            <div className="mb-4 lg:mb-4">
-              <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-[var(--primary)] flex items-center justify-center shadow-xl flex-shrink-0">
-                  {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />}
+            <div className="mb-2 lg:mb-4">
+              <div className="flex items-center gap-2 sm:gap-4 mb-1 sm:mb-4">
+                <div className="w-8 h-8 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg sm:rounded-2xl bg-[var(--primary)] flex items-center justify-center shadow-xl flex-shrink-0">
+                  {Icon && <Icon className="w-4 h-4 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />}
                 </div>
-                <div className="min-w-0">
-                  <p className="text-[var(--secondary)] text-xs sm:text-sm font-medium tracking-wider">
+                <div className="min-w-0 flex-1">
+                  <p className="text-[var(--secondary)] text-[10px] sm:text-sm font-medium tracking-wider">
                     {activeSpecial.nameEn}
                   </p>
-                  <h3 className="text-xl sm:text-2xl lg:text-2xl font-bold text-[var(--foreground)] truncate">
+                  <h3 className="text-base sm:text-2xl lg:text-2xl font-bold text-[var(--foreground)] truncate">
                     {activeSpecial.name}
                   </h3>
                 </div>
               </div>
 
-              <p className="text-[var(--foreground-muted)] text-sm sm:text-base lg:text-base leading-relaxed">
+              <p className="text-[var(--foreground-muted)] text-xs sm:text-base lg:text-base leading-relaxed line-clamp-2 sm:line-clamp-none">
                 {activeSpecial.description}
               </p>
             </div>
@@ -322,18 +302,29 @@ export default function Special() {
               </div>
             </div>
 
-            {/* Next Button - 모바일만 */}
-            <div className="flex items-center gap-4 mt-6 pt-6 border-t border-[#2a3a4a] lg:hidden">
+            {/* Next Button - 모바일 컴팩트 */}
+            <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[#2a3a4a] lg:hidden">
+              <button
+                onClick={() =>
+                  handleSelectSpecial(
+                    activeIndex === 0 ? specials.length - 1 : activeIndex - 1
+                  )
+                }
+                className="flex items-center justify-center gap-1 py-2 px-3 bg-[#1a2332] text-white border border-[#2a3a4a] rounded-lg font-medium text-xs transition-all"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                이전
+              </button>
               <button
                 onClick={() =>
                   handleSelectSpecial(
                     activeIndex === specials.length - 1 ? 0 : activeIndex + 1
                   )
                 }
-                className="flex-1 flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 bg-[var(--primary)] text-white border-2 border-[var(--primary)] rounded-xl font-bold text-base sm:text-lg hover:bg-[var(--primary-dark)] transition-all shadow-lg"
+                className="flex-1 flex items-center justify-center gap-1 py-2 bg-[var(--primary)] text-white rounded-lg font-medium text-xs transition-all"
               >
                 다음 시설
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
