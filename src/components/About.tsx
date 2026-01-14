@@ -84,28 +84,28 @@ export default function About() {
   }
 
   return (
-    <section id="about" className="bg-[var(--background)] pt-5 pb-10 lg:pt-24 lg:pb-24 min-h-fit" ref={ref}>
+    <section id="about" className="bg-[var(--background)] pt-4 pb-6 lg:pt-24 lg:pb-24 min-h-fit" ref={ref}>
       <div className="w-full max-w-none px-4 sm:px-6 lg:px-16 xl:px-24">
 
         {/* ===== 모바일 레이아웃 ===== */}
         {!isDesktop && (
           <div>
-            <div className="mb-8 text-center">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="w-10 h-[2px] bg-[#4A9F6D]" />
-                <span className="text-[#4A90A4] text-sm tracking-[0.2em] uppercase font-medium">
+            <div className="mb-4 text-center">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <div className="w-8 h-[1px] bg-[#4A9F6D]" />
+                <span className="text-[#4A90A4] text-xs tracking-[0.15em] uppercase font-medium">
                   {pensionInfo.nameEn}
                 </span>
-                <div className="w-10 h-[2px] bg-[#4A9F6D]" />
+                <div className="w-8 h-[1px] bg-[#4A9F6D]" />
               </div>
-              <h2 className="text-3xl font-bold text-[var(--foreground)] mb-4 leading-tight font-display">
+              <h2 className="text-2xl font-bold text-[var(--foreground)] mb-2 leading-tight font-display">
                 숲속의바다 <span className="text-[#4A9F6D]">펜션</span>
               </h2>
-              <p className="text-[var(--foreground-muted)] text-base leading-relaxed mb-4">
+              <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3">
                 파란하늘과 수많은 별빛이 가득한<br />숲속의바다 펜션으로 초대합니다
               </p>
               {/* 비디오 - 모바일 전용 (단일 iframe) */}
-              <div style={{ aspectRatio: '16/9' }} className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div style={{ aspectRatio: '16/9' }} className="relative rounded-xl overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 overflow-hidden">
                   <iframe
                     src={`https://player.vimeo.com/video/653962905?autoplay=1&loop=1&background=1&title=0&byline=0&portrait=0&muted=${isMuted ? 1 : 0}`}
@@ -118,32 +118,21 @@ export default function About() {
                 </div>
                 <button
                   onClick={toggleMute}
-                  className="absolute bottom-4 right-4 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all z-10 backdrop-blur-sm"
+                  className="absolute bottom-3 right-3 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all z-10 backdrop-blur-sm"
                   aria-label={isMuted ? "소리 켜기" : "소리 끄기"}
                 >
-                  {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                 </button>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 mb-8">
-              <div className="aspect-square rounded-xl overflow-hidden" style={{ backgroundImage: `url(/images/gallery/main/1.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
-              <div className="aspect-square rounded-xl overflow-hidden" style={{ backgroundImage: `url(/images/gallery/special2/3.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
-              <div className="aspect-square rounded-xl overflow-hidden" style={{ backgroundImage: `url(/images/gallery/room1/4.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
-              <div className="aspect-square rounded-xl overflow-hidden" style={{ backgroundImage: `url(/images/gallery/main/4.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
-            </div>
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-[var(--foreground)] mb-2">특별한 경험</h3>
-              <p className="text-[var(--foreground-muted)] text-sm">숲속의바다에서만 누릴 수 있는 특별함</p>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
+            {/* 특별한 경험 - 컴팩트 3열 */}
+            <div className="grid grid-cols-3 gap-2">
               {features.map((feature) => (
-                <div key={feature.title} className="p-3 bg-[#1a2332] rounded-xl border border-[#2a3a4a]">
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#4A9F6D] to-[#6BBF8D] flex items-center justify-center">
-                      <feature.icon className="w-3.5 h-3.5 text-white" />
-                    </div>
-                    <h4 className="text-xs font-bold text-white">{feature.title}</h4>
+                <div key={feature.title} className="p-2 bg-[#1a2332] rounded-lg border border-[#2a3a4a] flex flex-col items-center text-center">
+                  <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[#4A9F6D] to-[#6BBF8D] flex items-center justify-center mb-1">
+                    <feature.icon className="w-3 h-3 text-white" />
                   </div>
+                  <h4 className="text-[10px] font-bold text-white leading-tight">{feature.title}</h4>
                 </div>
               ))}
             </div>
