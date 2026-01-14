@@ -90,22 +90,27 @@ export default function About() {
         {/* ===== 모바일 레이아웃 ===== */}
         {!isDesktop && (
           <div>
-            <div className="mb-4 text-center">
-              <div className="flex items-center justify-center gap-3 mb-2">
+            {/* 헤더 */}
+            <div className="mb-3 text-center">
+              <div className="flex items-center justify-center gap-3 mb-1">
                 <div className="w-8 h-[1px] bg-[#4A9F6D]" />
-                <span className="text-[#4A90A4] text-xs tracking-[0.15em] uppercase font-medium">
+                <span className="text-[#4A90A4] text-[10px] tracking-[0.15em] uppercase font-medium">
                   {pensionInfo.nameEn}
                 </span>
                 <div className="w-8 h-[1px] bg-[#4A9F6D]" />
               </div>
-              <h2 className="text-2xl font-bold text-[var(--foreground)] mb-2 leading-tight font-display">
+              <h2 className="text-xl font-bold text-[var(--foreground)] mb-1 leading-tight font-display">
                 숲속의바다 <span className="text-[#4A9F6D]">펜션</span>
               </h2>
-              <p className="text-[var(--foreground-muted)] text-sm leading-relaxed mb-3">
-                파란하늘과 수많은 별빛이 가득한<br />숲속의바다 펜션으로 초대합니다
+              <p className="text-[var(--foreground-muted)] text-xs leading-relaxed">
+                파란하늘과 수많은 별빛이 가득한 숲속의바다로 초대합니다
               </p>
-              {/* 비디오 - 모바일 전용 (단일 iframe) */}
-              <div style={{ aspectRatio: '16/9' }} className="relative rounded-xl overflow-hidden shadow-2xl">
+            </div>
+
+            {/* 비디오 + 사진 그리드 */}
+            <div className="grid grid-cols-3 gap-1.5 mb-3">
+              {/* 비디오 - 2열 차지 */}
+              <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden shadow-lg" style={{ aspectRatio: '4/3' }}>
                 <div className="absolute inset-0 overflow-hidden">
                   <iframe
                     src={`https://player.vimeo.com/video/653962905?autoplay=1&loop=1&background=1&title=0&byline=0&portrait=0&muted=${isMuted ? 1 : 0}`}
@@ -118,21 +123,33 @@ export default function About() {
                 </div>
                 <button
                   onClick={toggleMute}
-                  className="absolute bottom-3 right-3 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all z-10 backdrop-blur-sm"
+                  className="absolute bottom-2 right-2 p-1.5 rounded-full bg-black/50 text-white z-10"
                   aria-label={isMuted ? "소리 켜기" : "소리 끄기"}
                 >
-                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
                 </button>
               </div>
+              {/* 오른쪽 사진 2장 */}
+              <div className="rounded-lg overflow-hidden" style={{ aspectRatio: '1/1', backgroundImage: `url(/images/gallery/special2/3.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden" style={{ aspectRatio: '1/1', backgroundImage: `url(/images/gallery/room1/4.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
             </div>
+
+            {/* 하단 사진 4장 */}
+            <div className="grid grid-cols-4 gap-1.5 mb-3">
+              <div className="rounded-lg overflow-hidden" style={{ aspectRatio: '1/1', backgroundImage: `url(/images/gallery/main/1.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden" style={{ aspectRatio: '1/1', backgroundImage: `url(/images/gallery/main/4.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden" style={{ aspectRatio: '1/1', backgroundImage: `url(/images/gallery/special1/1.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div className="rounded-lg overflow-hidden" style={{ aspectRatio: '1/1', backgroundImage: `url(/images/gallery/main/5.jpg)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+            </div>
+
             {/* 특별한 경험 - 컴팩트 3열 */}
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1.5">
               {features.map((feature) => (
-                <div key={feature.title} className="p-2 bg-[#1a2332] rounded-lg border border-[#2a3a4a] flex flex-col items-center text-center">
-                  <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[#4A9F6D] to-[#6BBF8D] flex items-center justify-center mb-1">
-                    <feature.icon className="w-3 h-3 text-white" />
+                <div key={feature.title} className="p-1.5 bg-[#1a2332] rounded-lg border border-[#2a3a4a] flex flex-col items-center text-center">
+                  <div className="w-5 h-5 rounded-md bg-gradient-to-br from-[#4A9F6D] to-[#6BBF8D] flex items-center justify-center mb-0.5">
+                    <feature.icon className="w-2.5 h-2.5 text-white" />
                   </div>
-                  <h4 className="text-[10px] font-bold text-white leading-tight">{feature.title}</h4>
+                  <h4 className="text-[9px] font-bold text-white leading-tight">{feature.title}</h4>
                 </div>
               ))}
             </div>
